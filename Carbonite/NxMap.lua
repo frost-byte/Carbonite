@@ -4554,7 +4554,7 @@ function Nx.Map:Update (elapsed)
 		self.Level = self.Level + 16
 	end
 
-	local name, description, txIndex, pX, pY
+	local name, txIndex, pX, pY, desc
 	local txX1, txX2, txY1, txY2
 	local poiNum = GetNumMapLandmarks()
 
@@ -5017,7 +5017,7 @@ function Nx.Map:ScanContinents()
 		SetMapZoom (cont)
 		local mapId = Nx.Map.MapZones[0][cont]
 
-		local name, description, txIndex, pX, pY
+		local name, txIndex, pX, pY, desc
 		local txX1, txX2, txY1, txY2
 		local poiNum = GetNumMapLandmarks()
 
@@ -8364,22 +8364,27 @@ function Nx.Map:InitTables()
 
 -- Make world coords for each zone
 --		Nx.prt ("WC %s %s %s", ci, cx, cy)
-
-	for n = 0, self.ContCnt do			
-		for _, id in pairs (Nx.Map.MapZones[n]) do
-			local winfo = worldInfo[id]						
-			if winfo then			
-				local info = self.MapInfo[winfo.Cont]
-				if info then
-					local cx = info.X
-					local cy = info.Y		
-					if winfo[2] ~= nil and winfo[3] ~= nil then
-						winfo[4] = cx + winfo[2]
-						winfo[5] = cy + winfo[3]
-					else
-						Nx.prt("Map Error: " .. tostring(n))
+  -- Search each continent in the Map Zone table. (There are currently 8 entries, this goes over the first 7, because ContCnt is set to 6)
+	for continent = 0, self.ContCnt do
+		for _, zoneID in pairs (Nx.Map.MapZones[continent]) do
+		-- Check the MapWorldInfo for each Zone (id) found in continent n.
+			local zoneInfo = worldInfo[zoneID]
+			if zoneInfo then
+				-- MapInfo contains details about each Continent's map.
+				local continentInfo = self.MapInfo[zoneInfo.Cont]
+				if continentInfo then
+					local cx = continentInfo.X
+					local cy = continentInfo.Y
+					-- Hard to tell what the indices into each zone record represent; Assuming they refer to an x,y origin and offsets
+					--Nx.prt("ZoneInfo zoneID %d ")
+					if zoneInfo[2] ~= nil and zoneInfo[3] ~= nil then
+						zoneInfo[4] = cx + zoneInfo[2]
+						zoneInfo[5] = cy + zoneInfo[3]
+--					else
+--						Nx.prt("Nx.Map:InitTables: Invalid ZoneInfo Coordinates. " .. tostring(continent))
 					end
-				else					
+--				else
+--					Nx.prt("Nx.Map:InitTables: Invalid Continent Info. " .. tostring(continent))
 				end
 			end
 		end
@@ -9129,8 +9134,8 @@ function Nx.Map:GetWorldZoneInfo (cont, zone)
 	local info = self.MapInfo[cont]
 	if not info then
 		return name, 0, 0, 1002, 668
-	end			
-	if zone == 0 then	
+	end		
+	if zone == 0 then
 		zone = Nx.Map.MapZones[0][cont]
 	end
 	local winfo = self.MapWorldInfo[zone]

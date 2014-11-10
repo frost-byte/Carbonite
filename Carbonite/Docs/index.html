@@ -1,0 +1,3875 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Options">Options</a></li>
+<li><a href="#Com">Com</a></li>
+<li><a href="#Map">Map</a></li>
+<li><a href="#MiniMap">MiniMap</a></li>
+<li><a href="#Title">Title</a></li>
+<li><a href="#Auction">Auction</a></li>
+<li><a href="#Combat">Combat</a></li>
+<li><a href="#UserEvents">UserEvents</a></li>
+<li><a href="#Data">Data</a></li>
+<li><a href="#Flags">Flags</a></li>
+<li><a href="#TomTom">TomTom</a></li>
+<li><a href="#Broker">Broker</a></li>
+<li><a href="#Events">Events</a></li>
+<li><a href="#SlashCommands">SlashCommands</a></li>
+<li><a href="#Carbonite">Carbonite</a></li>
+<li><a href="#PlayerEvents">PlayerEvents</a></li>
+<li><a href="#Debug">Debug</a></li>
+<li><a href="#Util">Util</a></li>
+<li><a href="#UI">UI</a></li>
+<li><a href="#Quests">Quests</a></li>
+<li><a href="#Gather">Gather</a></li>
+<li><a href="#Item">Item</a></li>
+<li><a href="#Procs">Procs</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><strong>carbonite</strong></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>carbonite</code></h1>
+<p>Carbonite - Addon for World of Warcraft(tm)
+ Copyright 2007-2012 Carbon Based Creations, LLC
+<p> This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.</p>
+<p>
+<p> This program is distributed in the hope that it will be useful,f
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+<p> You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.</p>
+
+
+<h2><a href="#Options">Options</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Opts">Nx.Opts</a></td>
+	<td class="summary">Options</td>
+	</tr>
+</table>
+<h2><a href="#Com">Com</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Com">Nx.Com</a></td>
+	<td class="summary">Communication</td>
+	</tr>
+</table>
+<h2><a href="#Map">Map</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Map">Nx.Map</a></td>
+	<td class="summary">Maps</td>
+	</tr>
+</table>
+<h2><a href="#MiniMap">MiniMap</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut">Nx.NXMiniMapBut</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:Init">Nx.NXMiniMapBut:Init ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:Menu_OnOptions">Nx.NXMiniMapBut:Menu_OnOptions ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:Menu_OnShowMap">Nx.NXMiniMapBut:Menu_OnShowMap ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:Menu_OnShowCombat">Nx.NXMiniMapBut:Menu_OnShowCombat ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:Menu_OnShowEvents">Nx.NXMiniMapBut:Menu_OnShowEvents ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:Menu_OnHideWatch">Nx.NXMiniMapBut:Menu_OnHideWatch (item)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:Menu_OnShowAuction">Nx.NXMiniMapBut:Menu_OnShowAuction (item)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:Menu_OnShowCom">Nx.NXMiniMapBut:Menu_OnShowCom ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:Menu_OnProfiling">Nx.NXMiniMapBut:Menu_OnProfiling ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:ToggleProfiling">Nx.NXMiniMapBut:ToggleProfiling ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:NXOnEnter">Nx.NXMiniMapBut:NXOnEnter (frm)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:NXOnClick">Nx.NXMiniMapBut:NXOnClick (button, down)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:OpenMenu">Nx.NXMiniMapBut:OpenMenu ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:NXOnUpdate">Nx.NXMiniMapBut:NXOnUpdate (frm)</a></td>
+	<td class="summary">Move the minimap button around the minimap</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.NXMiniMapBut:Move">Nx.NXMiniMapBut:Move (x, y)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.ModChatReceive">Nx.ModChatReceive (msg, dist, target)</a></td>
+	<td class="summary"></td>
+	</tr>
+</table>
+<h2><a href="#Title">Title</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Title">Nx.Title</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Title:Init">Nx.Title:Init ()</a></td>
+	<td class="summary">Title - Carbonite Logo</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Title:TickWait">Nx.Title:TickWait (proc)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Title:TickWait2">Nx.Title:TickWait2 (proc)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Title:Tick">Nx.Title:Tick ()</a></td>
+	<td class="summary"></td>
+	</tr>
+</table>
+<h2><a href="#Auction">Auction</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.AuctionAssist">Nx.AuctionAssist</a></td>
+	<td class="summary">Auction</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.AuctionAssist.OnAuction_house_show">Nx.AuctionAssist.OnAuction_house_show ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.AuctionAssist.OnAuction_house_closed">Nx.AuctionAssist.OnAuction_house_closed ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.AuctionAssist.OnAuction_item_list_update">Nx.AuctionAssist.OnAuction_item_list_update ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.AuctionAssist:Create">Nx.AuctionAssist:Create ()</a></td>
+	<td class="summary">Create favorites window</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.AuctionAssist:OnListEvent">Nx.AuctionAssist:OnListEvent (eventName, sel, val2, click)</a></td>
+	<td class="summary">On list events</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.AuctionAssist:Update">Nx.AuctionAssist:Update ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.AuctionAssist.AuctionFrameBrowse_Update">Nx.AuctionAssist.AuctionFrameBrowse_Update ()</a></td>
+	<td class="summary"></td>
+	</tr>
+</table>
+<h2><a href="#Combat">Combat</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Combat">Nx.Combat</a></td>
+	<td class="summary">Combat</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Combat:Init">Nx.Combat:Init ()</a></td>
+	<td class="summary">Init combat</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Combat:Open">Nx.Combat:Open ()</a></td>
+	<td class="summary">Open and init or toggle combat frame</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Combat:OpenGraph">Nx.Combat:OpenGraph ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Combat:OnEvent">Nx.Combat:OnEvent (event, ...)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Combat:OnUpdate">Nx.Combat:OnUpdate (...)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Combat:OnEnter">Nx.Combat:OnEnter (motion)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Combat:EnterCombat">Nx.Combat:EnterCombat (value)</a></td>
+	<td class="summary">Start combat</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Combat:SetLine">Nx.Combat:SetLine (value, colorStr, infoStr)</a></td>
+	<td class="summary">Set a new graph line to value</td>
+	</tr>
+</table>
+<h2><a href="#UserEvents">UserEvents</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents">Nx.UEvents</a></td>
+	<td class="summary">User Events</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents.List">Nx.UEvents.List</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:Init">Nx.UEvents:Init ()</a></td>
+	<td class="summary">User events recording and list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:AddInfo">Nx.UEvents:AddInfo (name)</a></td>
+	<td class="summary">Add info to list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:AddDeath">Nx.UEvents:AddDeath (name)</a></td>
+	<td class="summary">Add player death to list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:AddKill">Nx.UEvents:AddKill (name)</a></td>
+	<td class="summary">Add kill to list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:AddHonor">Nx.UEvents:AddHonor (name)</a></td>
+	<td class="summary">Add honor info to list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:AddHerb">Nx.UEvents:AddHerb (name)</a></td>
+	<td class="summary">Add herb to list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:AddMine">Nx.UEvents:AddMine (name)</a></td>
+	<td class="summary">Add mine to list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:AddOpen">Nx.UEvents:AddOpen (typ, name)</a></td>
+	<td class="summary">Add open to list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:GetPlyrPos">Nx.UEvents:GetPlyrPos ()</a></td>
+	<td class="summary">Get player map pos</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:UpdateAll">Nx.UEvents:UpdateAll (upGuide)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents.SortCmp">Nx.UEvents.SortCmp (v1, v2)</a></td>
+	<td class="summary">Sort compare</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:Sort">Nx.UEvents:Sort ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents.List:Open">Nx.UEvents.List:Open ()</a></td>
+	<td class="summary">Open and init or toggle user events list</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents.List:Update">Nx.UEvents.List:Update ()</a></td>
+	<td class="summary">Update User Events List</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.UEvents:UpdateMap">Nx.UEvents:UpdateMap (upGuide)</a></td>
+	<td class="summary">Update user event data on map</td>
+	</tr>
+</table>
+<h2><a href="#Data">Data</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.db">Nx.db</a></td>
+	<td class="summary">Databases</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.dbs">Nx.dbs</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#defaults">defaults</a></td>
+	<td class="summary">Defaults</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:UnitDCapture">Nx:UnitDCapture ()</a></td>
+	<td class="summary">Unit Data Capture retrieves information about a unit</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:UnitDTip">Nx:UnitDTip ()</a></td>
+	<td class="summary">Unit Data Tooltip Determines the Faction of the Unit that is moused over and adds info about it to the unit's tooltip.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GetData">Nx:GetData (name, ch)</a></td>
+	<td class="summary">Get generic named data (global, character, database)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:CopyCharacterData">Nx:CopyCharacterData (srcName, dstName)</a></td>
+	<td class="summary">Copy character data</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:DeleteCharacterData">Nx:DeleteCharacterData (srcName)</a></td>
+	<td class="summary">Delete character data</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GetDataToolBar">Nx:GetDataToolBar ()</a></td>
+	<td class="summary">Get data</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GetHUDOpts">Nx:GetHUDOpts ()</a></td>
+	<td class="summary">Get HUD options</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GetCap">Nx:GetCap ()</a></td>
+	<td class="summary">Get Captured data</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:CaptureFind">Nx:CaptureFind (t, key)</a></td>
+	<td class="summary">Find Captured Data</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:PackXY">Nx:PackXY (x, y)</a></td>
+	<td class="summary">Make packed XY string
+ (xy 0-100)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:UnpackXY">Nx:UnpackXY (xy)</a></td>
+	<td class="summary">Unpack X and Y coordinates from a string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:InitCharacter">Nx:InitCharacter ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GetRealmCharName">Nx:GetRealmCharName ()</a></td>
+	<td class="summary">Get Player Realm and Name</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:CalcRealmChars">Nx:CalcRealmChars ()</a></td>
+	<td class="summary">Determine the Player's other characters on the Realm.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:FindCharacter">Nx:FindCharacter (name)</a></td>
+	<td class="summary">Find character data for a named character on current realm or all realms if "realm.name"</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:DeleteCharacter">Nx:DeleteCharacter (name)</a></td>
+	<td class="summary">Delete character data for a named character on current realm or all realms if "realm.name"</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GetUnitClass">Nx:GetUnitClass ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:RecordCharacterLogin">Nx:RecordCharacterLogin ()</a></td>
+	<td class="summary">Record logged in state</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:RecordCharacter">Nx:RecordCharacter ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:DeleteOldEvents">Nx:DeleteOldEvents ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:DeleteOldEvent">Nx:DeleteOldEvent (ev, maxE)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:AddEvent">Nx:AddEvent (event, name, time, mapId, x, y, data)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:UnpackEvent">Nx:UnpackEvent (evStr)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:AddInfoEvent">Nx:AddInfoEvent (name, time, mapId, x, y)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:AddDeathEvent">Nx:AddDeathEvent (name, time, mapId, x, y)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:AddKillEvent">Nx:AddKillEvent (name, time, mapId, x, y)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:AddHerbEvent">Nx:AddHerbEvent (name, time, mapId, x, y)</a></td>
+	<td class="summary">AddHerbEvent</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:AddMineEvent">Nx:AddMineEvent (name, time, mapId, x, y)</a></td>
+	<td class="summary">AddMineEvent</td>
+	</tr>
+</table>
+<h2><a href="#Flags">Flags</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.RequestTime">Nx.RequestTime</a></td>
+	<td class="summary">Flags</td>
+	</tr>
+</table>
+<h2><a href="#TomTom">TomTom</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.EmulateTomTom">Nx.EmulateTomTom ()</a></td>
+	<td class="summary">TomTom</td>
+	</tr>
+</table>
+<h2><a href="#Broker">Broker</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.BrokerMenuTemplate">Nx.BrokerMenuTemplate</a></td>
+	<td class="summary">Broker Menu Template</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Broker">Nx.Broker</a></td>
+	<td class="summary">Broker Library</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#OnTooltipShow">OnTooltipShow (tooltip)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#OnClick">OnClick (frame, msg)</a></td>
+	<td class="summary"></td>
+	</tr>
+</table>
+<h2><a href="#Events">Events</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx:OnInitialize">Nx:OnInitialize ()</a></td>
+	<td class="summary">On Initialize</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:OnEnable">Nx:OnEnable ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:OnDisable">Nx:OnDisable ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:InitEvents">Nx:InitEvents ()</a></td>
+	<td class="summary">Initialize Events</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:RegisterEvent">Nx:RegisterEvent (event, handler)</a></td>
+	<td class="summary">Register Event
+ Register for event and set event handler
+ (event name, handler to call)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:NXOnEvent">Nx:NXOnEvent (event, ...)</a></td>
+	<td class="summary">Frame Events</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:NXOnUpdate">Nx:NXOnUpdate (elapsed)</a></td>
+	<td class="summary">Generic update</td>
+	</tr>
+</table>
+<h2><a href="#SlashCommands">SlashCommands</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.slashCommand">Nx.slashCommand (txt)</a></td>
+	<td class="summary">Slash command parsing</td>
+	</tr>
+</table>
+<h2><a href="#Carbonite">Carbonite</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx:NXOnLoad">Nx:NXOnLoad (frm)</a></td>
+	<td class="summary">Startup</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:SetupEverything">Nx:SetupEverything ()</a></td>
+	<td class="summary">SetupEverything</td>
+	</tr>
+</table>
+<h2><a href="#PlayerEvents">PlayerEvents</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx:OnPlayer_login">Nx:OnPlayer_login (event, ...)</a></td>
+	<td class="summary">Player Login</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:OnUpdate_mouseover_unit">Nx:OnUpdate_mouseover_unit (event, ...)</a></td>
+	<td class="summary">Mouse Over Unit Frame</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:OnPlayer_regen_disabled">Nx:OnPlayer_regen_disabled ()</a></td>
+	<td class="summary">Player Regen Disabled</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:OnPlayer_regen_enabled">Nx:OnPlayer_regen_enabled ()</a></td>
+	<td class="summary">Player Regen Enabled</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:OnUnit_spellcast_sent">Nx:OnUnit_spellcast_sent (event, arg1, arg2, arg3, arg4)</a></td>
+	<td class="summary">Player Gathering</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:OnZone_changed_new_area">Nx:OnZone_changed_new_area (event)</a></td>
+	<td class="summary">Player Changed Zones</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:OnPlayer_level_up">Nx:OnPlayer_level_up (event, arg1)</a></td>
+	<td class="summary">Player Leveled Up</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.OnParty_members_changed">Nx.OnParty_members_changed ()</a></td>
+	<td class="summary">Player Party Size Changed</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:OnUpdate_battlefield_score">Nx:OnUpdate_battlefield_score (event)</a></td>
+	<td class="summary">Player Battleground Score Updated</td>
+	</tr>
+</table>
+<h2><a href="#Debug">Debug</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx:UnitDGet">Nx:UnitDGet (target)</a></td>
+	<td class="summary">Debug Unit Data</td>
+	</tr>
+</table>
+<h2><a href="#Util">Util</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx:LootIt">Nx:LootIt ()</a></td>
+	<td class="summary">Loot vendor Test</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Split">Nx.Split (d, p)</a></td>
+	<td class="summary"></td>
+	</tr>
+</table>
+<h2><a href="#UI">UI</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx:ShowMessage">Nx:ShowMessage (msg, func1Txt, func1, func2Txt, func2)</a></td>
+	<td class="summary">Show Message
+ Show a generic message with optional function callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:ShowEditBox">Nx:ShowEditBox (msg, val, userData, funcAccept, funcCancel)</a></td>
+	<td class="summary">Show a generic edit box with optional function callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:ShowMessageTrial">Nx:ShowMessageTrial ()</a></td>
+	<td class="summary">Show a trial message</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:FindActiveChatFrameEditBox">Nx:FindActiveChatFrameEditBox ()</a></td>
+	<td class="summary">Find active chat frame edit box.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:Time">Nx:Time ()</a></td>
+	<td class="summary">Get time in seconds * 100.</td>
+	</tr>
+</table>
+<h2><a href="#Quests">Quests</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GetQuest">Nx:GetQuest (qId)</a></td>
+	<td class="summary">Get status for a quest</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:SetQuest">Nx:SetQuest (qId, qStatus, qTime)</a></td>
+	<td class="summary">Set status for a quest</td>
+	</tr>
+</table>
+<h2><a href="#Gather">Gather</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.GatherInfo">Nx.GatherInfo</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.GatherRemap">Nx.GatherRemap</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherInit">Nx:GatherInit ()</a></td>
+	<td class="summary">Init.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GetGather">Nx:GetGather (typ, id)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:HerbNameToId">Nx:HerbNameToId (name)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:MineNameToId">Nx:MineNameToId (name)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherVerUpgrade">Nx:GatherVerUpgrade ()</a></td>
+	<td class="summary">Upgrade gather data</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherVerUpgradeType">Nx:GatherVerUpgradeType (tName)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherHerb">Nx:GatherHerb (id, mapId, x, y)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherMine">Nx:GatherMine (id, mapId, x, y)</a></td>
+	<td class="summary">Save location of gathered mining
+ xy is zone coords</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:Gather">Nx:Gather (nodeType, id, mapId, x, y)</a></td>
+	<td class="summary">Add gathered item.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherUnpack">Nx:GatherUnpack (item)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherDeleteHerb">Nx:GatherDeleteHerb ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherDeleteMine">Nx:GatherDeleteMine ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherDeleteMisc">Nx:GatherDeleteMisc ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherImportCarbHerb">Nx:GatherImportCarbHerb ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherImportCarbMine">Nx:GatherImportCarbMine ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherImportCarbMisc">Nx:GatherImportCarbMisc ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherConvert">Nx:GatherConvert (id)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherNodeToCarb">Nx:GatherNodeToCarb (id)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx:GatherImportCarb">Nx:GatherImportCarb (nodeType)</a></td>
+	<td class="summary"></td>
+	</tr>
+</table>
+<h2><a href="#Item">Item</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Item:Init">Nx.Item:Init ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Item:Load">Nx.Item:Load (id)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Item.EnableLoadFromServer">Nx.Item.EnableLoadFromServer ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Item.DisableLoadFromServer">Nx.Item.DisableLoadFromServer ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Item.AskDeleteVV">Nx.Item.AskDeleteVV ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Item:ShowTooltip">Nx.Item:ShowTooltip (id, compare)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Item:Timer">Nx.Item:Timer ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Item:DrawTimer">Nx.Item:DrawTimer ()</a></td>
+	<td class="summary"></td>
+	</tr>
+</table>
+<h2><a href="#Procs">Procs</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Proc:Init">Nx.Proc:Init ()</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Proc:New">Nx.Proc:New (user, func, delay)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Proc:SetFunc">Nx.Proc:SetFunc (proc, func)</a></td>
+	<td class="summary"></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Nx.Proc:OnUpdate">Nx.Proc:OnUpdate (elapsed)</a></td>
+	<td class="summary"></td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Options"></a>Options</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.Opts"></a>
+    <strong>Nx.Opts</strong>
+    </dt>
+    <dd>
+    Options
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Com"></a>Com</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.Com"></a>
+    <strong>Nx.Com</strong>
+    </dt>
+    <dd>
+    Communication
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Map"></a>Map</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.Map"></a>
+    <strong>Nx.Map</strong>
+    </dt>
+    <dd>
+    Maps
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="MiniMap"></a>MiniMap</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.NXMiniMapBut"></a>
+    <strong>Nx.NXMiniMapBut</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:Init"></a>
+    <strong>Nx.NXMiniMapBut:Init ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:Menu_OnOptions"></a>
+    <strong>Nx.NXMiniMapBut:Menu_OnOptions ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:Menu_OnShowMap"></a>
+    <strong>Nx.NXMiniMapBut:Menu_OnShowMap ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:Menu_OnShowCombat"></a>
+    <strong>Nx.NXMiniMapBut:Menu_OnShowCombat ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:Menu_OnShowEvents"></a>
+    <strong>Nx.NXMiniMapBut:Menu_OnShowEvents ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:Menu_OnHideWatch"></a>
+    <strong>Nx.NXMiniMapBut:Menu_OnHideWatch (item)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:Menu_OnShowAuction"></a>
+    <strong>Nx.NXMiniMapBut:Menu_OnShowAuction (item)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:Menu_OnShowCom"></a>
+    <strong>Nx.NXMiniMapBut:Menu_OnShowCom ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:Menu_OnProfiling"></a>
+    <strong>Nx.NXMiniMapBut:Menu_OnProfiling ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:ToggleProfiling"></a>
+    <strong>Nx.NXMiniMapBut:ToggleProfiling ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:NXOnEnter"></a>
+    <strong>Nx.NXMiniMapBut:NXOnEnter (frm)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">frm</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:NXOnClick"></a>
+    <strong>Nx.NXMiniMapBut:NXOnClick (button, down)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">button</span>
+
+        </li>
+        <li><span class="parameter">down</span>
+        Nx.prt (button)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:OpenMenu"></a>
+    <strong>Nx.NXMiniMapBut:OpenMenu ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:NXOnUpdate"></a>
+    <strong>Nx.NXMiniMapBut:NXOnUpdate (frm)</strong>
+    </dt>
+    <dd>
+    Move the minimap button around the minimap
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">frm</span>
+        Nx.prtVar ("NXOnUpdate", frm) V4 this
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.NXMiniMapBut:Move"></a>
+    <strong>Nx.NXMiniMapBut:Move (x, y)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.ModChatReceive"></a>
+    <strong>Nx.ModChatReceive (msg, dist, target)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">msg</span>
+
+        </li>
+        <li><span class="parameter">dist</span>
+
+        </li>
+        <li><span class="parameter">target</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Title"></a>Title</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.Title"></a>
+    <strong>Nx.Title</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Title:Init"></a>
+    <strong>Nx.Title:Init ()</strong>
+    </dt>
+    <dd>
+    Title - Carbonite Logo
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Title:TickWait"></a>
+    <strong>Nx.Title:TickWait (proc)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">proc</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Title:TickWait2"></a>
+    <strong>Nx.Title:TickWait2 (proc)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">proc</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Title:Tick"></a>
+    <strong>Nx.Title:Tick ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Auction"></a>Auction</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.AuctionAssist"></a>
+    <strong>Nx.AuctionAssist</strong>
+    </dt>
+    <dd>
+    Auction
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.AuctionAssist.OnAuction_house_show"></a>
+    <strong>Nx.AuctionAssist.OnAuction_house_show ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.AuctionAssist.OnAuction_house_closed"></a>
+    <strong>Nx.AuctionAssist.OnAuction_house_closed ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.AuctionAssist.OnAuction_item_list_update"></a>
+    <strong>Nx.AuctionAssist.OnAuction_item_list_update ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.AuctionAssist:Create"></a>
+    <strong>Nx.AuctionAssist:Create ()</strong>
+    </dt>
+    <dd>
+    Create favorites window
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.AuctionAssist:OnListEvent"></a>
+    <strong>Nx.AuctionAssist:OnListEvent (eventName, sel, val2, click)</strong>
+    </dt>
+    <dd>
+    On list events
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eventName</span>
+
+        </li>
+        <li><span class="parameter">sel</span>
+
+        </li>
+        <li><span class="parameter">val2</span>
+
+        </li>
+        <li><span class="parameter">click</span>
+        Nx.prt ("Guide list event "..eventName)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.AuctionAssist:Update"></a>
+    <strong>Nx.AuctionAssist:Update ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.AuctionAssist.AuctionFrameBrowse_Update"></a>
+    <strong>Nx.AuctionAssist.AuctionFrameBrowse_Update ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Combat"></a>Combat</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.Combat"></a>
+    <strong>Nx.Combat</strong>
+    </dt>
+    <dd>
+    Combat
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Combat:Init"></a>
+    <strong>Nx.Combat:Init ()</strong>
+    </dt>
+    <dd>
+    Init combat
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Combat:Open"></a>
+    <strong>Nx.Combat:Open ()</strong>
+    </dt>
+    <dd>
+    Open and init or toggle combat frame
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Combat:OpenGraph"></a>
+    <strong>Nx.Combat:OpenGraph ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Combat:OnEvent"></a>
+    <strong>Nx.Combat:OnEvent (event, ...)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">event</span>
+
+        </li>
+        <li><span class="parameter">...</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Combat:OnUpdate"></a>
+    <strong>Nx.Combat:OnUpdate (...)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Combat:OnEnter"></a>
+    <strong>Nx.Combat:OnEnter (motion)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">motion</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Combat:EnterCombat"></a>
+    <strong>Nx.Combat:EnterCombat (value)</strong>
+    </dt>
+    <dd>
+    Start combat
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Combat:SetLine"></a>
+    <strong>Nx.Combat:SetLine (value, colorStr, infoStr)</strong>
+    </dt>
+    <dd>
+    Set a new graph line to value
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+
+        </li>
+        <li><span class="parameter">colorStr</span>
+
+        </li>
+        <li><span class="parameter">infoStr</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="UserEvents"></a>UserEvents</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.UEvents"></a>
+    <strong>Nx.UEvents</strong>
+    </dt>
+    <dd>
+    User Events
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents.List"></a>
+    <strong>Nx.UEvents.List</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:Init"></a>
+    <strong>Nx.UEvents:Init ()</strong>
+    </dt>
+    <dd>
+    User events recording and list
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:AddInfo"></a>
+    <strong>Nx.UEvents:AddInfo (name)</strong>
+    </dt>
+    <dd>
+    Add info to list
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:AddDeath"></a>
+    <strong>Nx.UEvents:AddDeath (name)</strong>
+    </dt>
+    <dd>
+    Add player death to list
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:AddKill"></a>
+    <strong>Nx.UEvents:AddKill (name)</strong>
+    </dt>
+    <dd>
+    Add kill to list
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:AddHonor"></a>
+    <strong>Nx.UEvents:AddHonor (name)</strong>
+    </dt>
+    <dd>
+    Add honor info to list
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:AddHerb"></a>
+    <strong>Nx.UEvents:AddHerb (name)</strong>
+    </dt>
+    <dd>
+    Add herb to list
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:AddMine"></a>
+    <strong>Nx.UEvents:AddMine (name)</strong>
+    </dt>
+    <dd>
+    Add mine to list
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:AddOpen"></a>
+    <strong>Nx.UEvents:AddOpen (typ, name)</strong>
+    </dt>
+    <dd>
+    Add open to list
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">typ</span>
+
+        </li>
+        <li><span class="parameter">name</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:GetPlyrPos"></a>
+    <strong>Nx.UEvents:GetPlyrPos ()</strong>
+    </dt>
+    <dd>
+    Get player map pos
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:UpdateAll"></a>
+    <strong>Nx.UEvents:UpdateAll (upGuide)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">upGuide</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents.SortCmp"></a>
+    <strong>Nx.UEvents.SortCmp (v1, v2)</strong>
+    </dt>
+    <dd>
+    Sort compare
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">v1</span>
+
+        </li>
+        <li><span class="parameter">v2</span>
+        prtD ("Sort "..v1.Time.." "..v2.Time)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:Sort"></a>
+    <strong>Nx.UEvents:Sort ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents.List:Open"></a>
+    <strong>Nx.UEvents.List:Open ()</strong>
+    </dt>
+    <dd>
+    Open and init or toggle user events list
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents.List:Update"></a>
+    <strong>Nx.UEvents.List:Update ()</strong>
+    </dt>
+    <dd>
+    Update User Events List
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.UEvents:UpdateMap"></a>
+    <strong>Nx.UEvents:UpdateMap (upGuide)</strong>
+    </dt>
+    <dd>
+    Update user event data on map
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">upGuide</span>
+            <span class="types"><span class="type">Nx.prt ("UEvents</span></span>
+        UpdateMap")
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Data"></a>Data</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.db"></a>
+    <strong>Nx.db</strong>
+    </dt>
+    <dd>
+    Databases
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.dbs"></a>
+    <strong>Nx.dbs</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "defaults"></a>
+    <strong>defaults</strong>
+    </dt>
+    <dd>
+    Defaults
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">char</span>
+
+        </li>
+        <li><span class="parameter">ShowGatherH</span>
+
+        </li>
+        <li><span class="parameter">ShowGatherM</span>
+
+        </li>
+        <li><span class="parameter">ShowQuestGivers</span>
+
+        </li>
+        <li><span class="parameter">ShowMailboxes</span>
+
+        </li>
+        <li><span class="parameter">ShowCustom</span>
+
+        </li>
+        <li><span class="parameter">ShowCCity</span>
+
+        </li>
+        <li><span class="parameter">ShowCExtra</span>
+
+        </li>
+        <li><span class="parameter">ShowCTown</span>
+
+        </li>
+        <li><span class="parameter">ShowArchBlobs</span>
+
+        </li>
+        <li><span class="parameter">ShowQuestBlobs</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:UnitDCapture"></a>
+    <strong>Nx:UnitDCapture ()</strong>
+    </dt>
+    <dd>
+    Unit Data Capture retrieves information about a unit
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:UnitDTip"></a>
+    <strong>Nx:UnitDTip ()</strong>
+    </dt>
+    <dd>
+    Unit Data Tooltip Determines the Faction of the Unit that is moused over and adds info about it to the unit's tooltip.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GetData"></a>
+    <strong>Nx:GetData (name, ch)</strong>
+    </dt>
+    <dd>
+    Get generic named data (global, character, database)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+
+        </li>
+        <li><span class="parameter">ch</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:CopyCharacterData"></a>
+    <strong>Nx:CopyCharacterData (srcName, dstName)</strong>
+    </dt>
+    <dd>
+    Copy character data
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">srcName</span>
+
+        </li>
+        <li><span class="parameter">dstName</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:DeleteCharacterData"></a>
+    <strong>Nx:DeleteCharacterData (srcName)</strong>
+    </dt>
+    <dd>
+    Delete character data
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">srcName</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GetDataToolBar"></a>
+    <strong>Nx:GetDataToolBar ()</strong>
+    </dt>
+    <dd>
+    Get data
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GetHUDOpts"></a>
+    <strong>Nx:GetHUDOpts ()</strong>
+    </dt>
+    <dd>
+    Get HUD options
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GetCap"></a>
+    <strong>Nx:GetCap ()</strong>
+    </dt>
+    <dd>
+    Get Captured data
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:CaptureFind"></a>
+    <strong>Nx:CaptureFind (t, key)</strong>
+    </dt>
+    <dd>
+    Find Captured Data
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+
+        </li>
+        <li><span class="parameter">key</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:PackXY"></a>
+    <strong>Nx:PackXY (x, y)</strong>
+    </dt>
+    <dd>
+    Make packed XY string
+ (xy 0-100)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:UnpackXY"></a>
+    <strong>Nx:UnpackXY (xy)</strong>
+    </dt>
+    <dd>
+    Unpack X and Y coordinates from a string
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">xy</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:InitCharacter"></a>
+    <strong>Nx:InitCharacter ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GetRealmCharName"></a>
+    <strong>Nx:GetRealmCharName ()</strong>
+    </dt>
+    <dd>
+    Get Player Realm and Name
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:CalcRealmChars"></a>
+    <strong>Nx:CalcRealmChars ()</strong>
+    </dt>
+    <dd>
+    Determine the Player's other characters on the Realm.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:FindCharacter"></a>
+    <strong>Nx:FindCharacter (name)</strong>
+    </dt>
+    <dd>
+    Find character data for a named character on current realm or all realms if "realm.name"
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:DeleteCharacter"></a>
+    <strong>Nx:DeleteCharacter (name)</strong>
+    </dt>
+    <dd>
+    Delete character data for a named character on current realm or all realms if "realm.name"
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GetUnitClass"></a>
+    <strong>Nx:GetUnitClass ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:RecordCharacterLogin"></a>
+    <strong>Nx:RecordCharacterLogin ()</strong>
+    </dt>
+    <dd>
+    Record logged in state
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:RecordCharacter"></a>
+    <strong>Nx:RecordCharacter ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:DeleteOldEvents"></a>
+    <strong>Nx:DeleteOldEvents ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:DeleteOldEvent"></a>
+    <strong>Nx:DeleteOldEvent (ev, maxE)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ev</span>
+
+        </li>
+        <li><span class="parameter">maxE</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:AddEvent"></a>
+    <strong>Nx:AddEvent (event, name, time, mapId, x, y, data)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">event</span>
+         Event Type, one character: I,K,D,H,M -> Info, Kill, Death, Herb, Mine
+        </li>
+        <li><span class="parameter">name</span>
+        	Character's Name?
+        </li>
+        <li><span class="parameter">time</span>
+        	Time of the event
+        </li>
+        <li><span class="parameter">mapId</span>
+         Map where the event took place
+        </li>
+        <li><span class="parameter">x</span>
+        			X coordinate in the map
+        </li>
+        <li><span class="parameter">y</span>
+        			Y coordinate in the map
+        </li>
+        <li><span class="parameter">data</span>
+         is optional string
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:UnpackEvent"></a>
+    <strong>Nx:UnpackEvent (evStr)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">evStr</span>
+         The event string uses ^ as a delimiter; Contains the event type (1 character), time, mapID, xy coords, name and some data
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:AddInfoEvent"></a>
+    <strong>Nx:AddInfoEvent (name, time, mapId, x, y)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         Player name?
+        </li>
+        <li><span class="parameter">time</span>
+         Time the even occurred
+        </li>
+        <li><span class="parameter">mapId</span>
+         Id of the map in which the event happened
+        </li>
+        <li><span class="parameter">x</span>
+         The x coordinate for the event location in the map
+        </li>
+        <li><span class="parameter">y</span>
+         The y coordinate for the event location in the map
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:AddDeathEvent"></a>
+    <strong>Nx:AddDeathEvent (name, time, mapId, x, y)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         Player name?
+        </li>
+        <li><span class="parameter">time</span>
+         Time the even occurred
+        </li>
+        <li><span class="parameter">mapId</span>
+         Id of the map in which the event happened
+        </li>
+        <li><span class="parameter">x</span>
+         The x coordinate for the event location in the map
+        </li>
+        <li><span class="parameter">y</span>
+         The y coordinate for the event location in the map
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:AddKillEvent"></a>
+    <strong>Nx:AddKillEvent (name, time, mapId, x, y)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         Player name?
+        </li>
+        <li><span class="parameter">time</span>
+         Time the even occurred
+        </li>
+        <li><span class="parameter">mapId</span>
+         Id of the map in which the event happened
+        </li>
+        <li><span class="parameter">x</span>
+         The x coordinate for the event location in the map
+        </li>
+        <li><span class="parameter">y</span>
+         The y coordinate for the event location in the map
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:AddHerbEvent"></a>
+    <strong>Nx:AddHerbEvent (name, time, mapId, x, y)</strong>
+    </dt>
+    <dd>
+    AddHerbEvent
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         Player name?
+        </li>
+        <li><span class="parameter">time</span>
+         Time the even occurred
+        </li>
+        <li><span class="parameter">mapId</span>
+         Id of the map in which the event happened
+        </li>
+        <li><span class="parameter">x</span>
+         The x coordinate for the event location in the map
+        </li>
+        <li><span class="parameter">y</span>
+         The y coordinate for the event location in the map
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:AddMineEvent"></a>
+    <strong>Nx:AddMineEvent (name, time, mapId, x, y)</strong>
+    </dt>
+    <dd>
+    AddMineEvent
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         Player name?
+        </li>
+        <li><span class="parameter">time</span>
+         Time the even occurred
+        </li>
+        <li><span class="parameter">mapId</span>
+         Id of the map in which the event happened
+        </li>
+        <li><span class="parameter">x</span>
+         The x coordinate for the event location in the map
+        </li>
+        <li><span class="parameter">y</span>
+         The y coordinate for the event location in the map
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Flags"></a>Flags</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.RequestTime"></a>
+    <strong>Nx.RequestTime</strong>
+    </dt>
+    <dd>
+    Flags
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="TomTom"></a>TomTom</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.EmulateTomTom"></a>
+    <strong>Nx.EmulateTomTom ()</strong>
+    </dt>
+    <dd>
+    TomTom
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Broker"></a>Broker</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.BrokerMenuTemplate"></a>
+    <strong>Nx.BrokerMenuTemplate</strong>
+    </dt>
+    <dd>
+    Broker Menu Template
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">{</span>
+
+        </li>
+        <li><span class="parameter">icon</span>
+
+        </li>
+        <li><span class="parameter">isTitle</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Broker"></a>
+    <strong>Nx.Broker</strong>
+    </dt>
+    <dd>
+    Broker Library
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "OnTooltipShow"></a>
+    <strong>OnTooltipShow (tooltip)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tooltip</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "OnClick"></a>
+    <strong>OnClick (frame, msg)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">frame</span>
+
+        </li>
+        <li><span class="parameter">msg</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Events"></a>Events</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx:OnInitialize"></a>
+    <strong>Nx:OnInitialize ()</strong>
+    </dt>
+    <dd>
+    On Initialize
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:OnEnable"></a>
+    <strong>Nx:OnEnable ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:OnDisable"></a>
+    <strong>Nx:OnDisable ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:InitEvents"></a>
+    <strong>Nx:InitEvents ()</strong>
+    </dt>
+    <dd>
+    Initialize Events
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:RegisterEvent"></a>
+    <strong>Nx:RegisterEvent (event, handler)</strong>
+    </dt>
+    <dd>
+    Register Event
+ Register for event and set event handler
+ (event name, handler to call)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">event</span>
+
+        </li>
+        <li><span class="parameter">handler</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:NXOnEvent"></a>
+    <strong>Nx:NXOnEvent (event, ...)</strong>
+    </dt>
+    <dd>
+    Frame Events
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">event</span>
+
+        </li>
+        <li><span class="parameter">...</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:NXOnUpdate"></a>
+    <strong>Nx:NXOnUpdate (elapsed)</strong>
+    </dt>
+    <dd>
+    Generic update
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">elapsed</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="SlashCommands"></a>SlashCommands</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.slashCommand"></a>
+    <strong>Nx.slashCommand (txt)</strong>
+    </dt>
+    <dd>
+    Slash command parsing
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">txt</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Carbonite"></a>Carbonite</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx:NXOnLoad"></a>
+    <strong>Nx:NXOnLoad (frm)</strong>
+    </dt>
+    <dd>
+    Startup
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">frm</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:SetupEverything"></a>
+    <strong>Nx:SetupEverything ()</strong>
+    </dt>
+    <dd>
+    SetupEverything
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="PlayerEvents"></a>PlayerEvents</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx:OnPlayer_login"></a>
+    <strong>Nx:OnPlayer_login (event, ...)</strong>
+    </dt>
+    <dd>
+    Player Login
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">event</span>
+
+        </li>
+        <li><span class="parameter">...</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:OnUpdate_mouseover_unit"></a>
+    <strong>Nx:OnUpdate_mouseover_unit (event, ...)</strong>
+    </dt>
+    <dd>
+    Mouse Over Unit Frame
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">event</span>
+
+        </li>
+        <li><span class="parameter">...</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:OnPlayer_regen_disabled"></a>
+    <strong>Nx:OnPlayer_regen_disabled ()</strong>
+    </dt>
+    <dd>
+    Player Regen Disabled
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:OnPlayer_regen_enabled"></a>
+    <strong>Nx:OnPlayer_regen_enabled ()</strong>
+    </dt>
+    <dd>
+    Player Regen Enabled
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:OnUnit_spellcast_sent"></a>
+    <strong>Nx:OnUnit_spellcast_sent (event, arg1, arg2, arg3, arg4)</strong>
+    </dt>
+    <dd>
+    Player Gathering
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">event</span>
+
+        </li>
+        <li><span class="parameter">arg1</span>
+
+        </li>
+        <li><span class="parameter">arg2</span>
+
+        </li>
+        <li><span class="parameter">arg3</span>
+
+        </li>
+        <li><span class="parameter">arg4</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:OnZone_changed_new_area"></a>
+    <strong>Nx:OnZone_changed_new_area (event)</strong>
+    </dt>
+    <dd>
+    Player Changed Zones
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">event</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:OnPlayer_level_up"></a>
+    <strong>Nx:OnPlayer_level_up (event, arg1)</strong>
+    </dt>
+    <dd>
+    Player Leveled Up
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">event</span>
+
+        </li>
+        <li><span class="parameter">arg1</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.OnParty_members_changed"></a>
+    <strong>Nx.OnParty_members_changed ()</strong>
+    </dt>
+    <dd>
+    Player Party Size Changed
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:OnUpdate_battlefield_score"></a>
+    <strong>Nx:OnUpdate_battlefield_score (event)</strong>
+    </dt>
+    <dd>
+    Player Battleground Score Updated
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">event</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Debug"></a>Debug</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx:UnitDGet"></a>
+    <strong>Nx:UnitDGet (target)</strong>
+    </dt>
+    <dd>
+    Debug Unit Data
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">target</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Util"></a>Util</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx:LootIt"></a>
+    <strong>Nx:LootIt ()</strong>
+    </dt>
+    <dd>
+    Loot vendor Test
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Split"></a>
+    <strong>Nx.Split (d, p)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">d</span>
+
+        </li>
+        <li><span class="parameter">p</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="UI"></a>UI</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx:ShowMessage"></a>
+    <strong>Nx:ShowMessage (msg, func1Txt, func1, func2Txt, func2)</strong>
+    </dt>
+    <dd>
+    Show Message
+ Show a generic message with optional function callback
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">msg</span>
+
+        </li>
+        <li><span class="parameter">func1Txt</span>
+
+        </li>
+        <li><span class="parameter">func1</span>
+
+        </li>
+        <li><span class="parameter">func2Txt</span>
+
+        </li>
+        <li><span class="parameter">func2</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:ShowEditBox"></a>
+    <strong>Nx:ShowEditBox (msg, val, userData, funcAccept, funcCancel)</strong>
+    </dt>
+    <dd>
+    Show a generic edit box with optional function callback
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">msg</span>
+
+        </li>
+        <li><span class="parameter">val</span>
+
+        </li>
+        <li><span class="parameter">userData</span>
+
+        </li>
+        <li><span class="parameter">funcAccept</span>
+
+        </li>
+        <li><span class="parameter">funcCancel</span>
+        Nx.prt ("ShowEditBox")
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:ShowMessageTrial"></a>
+    <strong>Nx:ShowMessageTrial ()</strong>
+    </dt>
+    <dd>
+    Show a trial message
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:FindActiveChatFrameEditBox"></a>
+    <strong>Nx:FindActiveChatFrameEditBox ()</strong>
+    </dt>
+    <dd>
+    Find active chat frame edit box.  Added for patch 3.35 because there is one for each possible chat window now
+ Was called ChatFrameEditBox. Now ChatFrame1EditBox to ChatFrame10EditBox
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:Time"></a>
+    <strong>Nx:Time ()</strong>
+    </dt>
+    <dd>
+    Get time in seconds * 100.  Adds fake hundreths
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Quests"></a>Quests</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx:GetQuest"></a>
+    <strong>Nx:GetQuest (qId)</strong>
+    </dt>
+    <dd>
+    Get status for a quest
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">qId</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:SetQuest"></a>
+    <strong>Nx:SetQuest (qId, qStatus, qTime)</strong>
+    </dt>
+    <dd>
+    Set status for a quest
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">qId</span>
+
+        </li>
+        <li><span class="parameter">qStatus</span>
+
+        </li>
+        <li><span class="parameter">qTime</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Gather"></a>Gather</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.GatherInfo"></a>
+    <strong>Nx.GatherInfo</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">[</span>
+
+        </li>
+        <li><span class="parameter">Trade_Archaeology</span>
+
+        </li>
+        <li><span class="parameter">L</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.GatherRemap"></a>
+    <strong>Nx.GatherRemap</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">[</span>
+        Icethorn
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherInit"></a>
+    <strong>Nx:GatherInit ()</strong>
+    </dt>
+    <dd>
+    Init.  Call after map init
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GetGather"></a>
+    <strong>Nx:GetGather (typ, id)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">typ</span>
+
+        </li>
+        <li><span class="parameter">id</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:HerbNameToId"></a>
+    <strong>Nx:HerbNameToId (name)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:MineNameToId"></a>
+    <strong>Nx:MineNameToId (name)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherVerUpgrade"></a>
+    <strong>Nx:GatherVerUpgrade ()</strong>
+    </dt>
+    <dd>
+    Upgrade gather data
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherVerUpgradeType"></a>
+    <strong>Nx:GatherVerUpgradeType (tName)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tName</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherHerb"></a>
+    <strong>Nx:GatherHerb (id, mapId, x, y)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">id</span>
+
+        </li>
+        <li><span class="parameter">mapId</span>
+
+        </li>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherMine"></a>
+    <strong>Nx:GatherMine (id, mapId, x, y)</strong>
+    </dt>
+    <dd>
+    Save location of gathered mining
+ xy is zone coords
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">id</span>
+
+        </li>
+        <li><span class="parameter">mapId</span>
+
+        </li>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:Gather"></a>
+    <strong>Nx:Gather (nodeType, id, mapId, x, y)</strong>
+    </dt>
+    <dd>
+    Add gathered item.  xy zone coords 0-100
+ Upgrade gather data
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">nodeType</span>
+
+        </li>
+        <li><span class="parameter">id</span>
+
+        </li>
+        <li><span class="parameter">mapId</span>
+
+        </li>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherUnpack"></a>
+    <strong>Nx:GatherUnpack (item)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">item</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherDeleteHerb"></a>
+    <strong>Nx:GatherDeleteHerb ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherDeleteMine"></a>
+    <strong>Nx:GatherDeleteMine ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherDeleteMisc"></a>
+    <strong>Nx:GatherDeleteMisc ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherImportCarbHerb"></a>
+    <strong>Nx:GatherImportCarbHerb ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherImportCarbMine"></a>
+    <strong>Nx:GatherImportCarbMine ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherImportCarbMisc"></a>
+    <strong>Nx:GatherImportCarbMisc ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherConvert"></a>
+    <strong>Nx:GatherConvert (id)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">id</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherNodeToCarb"></a>
+    <strong>Nx:GatherNodeToCarb (id)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">id</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx:GatherImportCarb"></a>
+    <strong>Nx:GatherImportCarb (nodeType)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">nodeType</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Item"></a>Item</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.Item:Init"></a>
+    <strong>Nx.Item:Init ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Item:Load"></a>
+    <strong>Nx.Item:Load (id)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">id</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Item.EnableLoadFromServer"></a>
+    <strong>Nx.Item.EnableLoadFromServer ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Item.DisableLoadFromServer"></a>
+    <strong>Nx.Item.DisableLoadFromServer ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Item.AskDeleteVV"></a>
+    <strong>Nx.Item.AskDeleteVV ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Item:ShowTooltip"></a>
+    <strong>Nx.Item:ShowTooltip (id, compare)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">id</span>
+
+        </li>
+        <li><span class="parameter">compare</span>
+        Nx.prtVar ("ShowTooltip", id)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Item:Timer"></a>
+    <strong>Nx.Item:Timer ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Item:DrawTimer"></a>
+    <strong>Nx.Item:DrawTimer ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Procs"></a>Procs</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Nx.Proc:Init"></a>
+    <strong>Nx.Proc:Init ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Proc:New"></a>
+    <strong>Nx.Proc:New (user, func, delay)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">user</span>
+
+        </li>
+        <li><span class="parameter">func</span>
+
+        </li>
+        <li><span class="parameter">delay</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Proc:SetFunc"></a>
+    <strong>Nx.Proc:SetFunc (proc, func)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">proc</span>
+
+        </li>
+        <li><span class="parameter">func</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Nx.Proc:OnUpdate"></a>
+    <strong>Nx.Proc:OnUpdate (elapsed)</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">elapsed</span>
+        Nx.prt ("Proc Elapsed raw %s", elapsed)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2014-11-10 04:12:52 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

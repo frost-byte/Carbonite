@@ -1,4 +1,4 @@
-﻿---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 -- Carbonite - Addon for World of Warcraft(tm)
 -- Copyright 2007-2012 Carbon Based Creations, LLC
 --
@@ -18,7 +18,8 @@
 
 ---------------------------------------------------------------------------------------
 local _G = getfenv(0)
-
+--- Carbonite Main Module
+-- @type Nx
 Nx = LibStub("AceAddon-3.0"):NewAddon("Carbonite","AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "AceComm-3.0")	
 local L = LibStub("AceLocale-3.0"):GetLocale("Carbonite")
 
@@ -35,19 +36,20 @@ Nx.VERSIONDATA			= .02				-- Main data
 Nx.VERSIONCHAR			= .02				-- Character data
 Nx.VERSIONCharData	= .4				-- Character specific saved data
 Nx.VERSIONGATHER		= .8				-- Gathered data
-Nx.VERSIONGOPTS		= .102			-- Global options
+Nx.VERSIONGOPTS		= .102				-- Global options
 Nx.VERSIONHUDOPTS		= .03				-- HUD options
 Nx.VERSIONList			= .1				-- List header data
 Nx.VERSIONTaxiCap		= .5				-- Taxi capture data
 Nx.VERSIONTRAVEL		= .5				-- Travel data
-Nx.VERSIONWin			= .31				-- Window layouts
+Nx.VERSIONWin			= .31					-- Window layouts
 Nx.VERSIONTOOLBAR		= .1				-- Tool Bar data
-Nx.VERSIONCAP			= .75				-- Captured data (quest recording)
+Nx.VERSIONCAP			= .75					-- Captured data (quest recording)
 Nx.VERSIONVENDORV		= .56				-- Visited vendor data
 Nx.VERSIONTransferData = .1			-- Transfer data
 Nx.TXTBLUE			= "|cffc0c0ff"
 
-Nx.Tick = 0
+
+-- User Interface
 
 Nx.Font = {}
 Nx.Skin = {}
@@ -65,30 +67,59 @@ Nx.ToolBar = {}
 
 Nx.Proc = {}
 Nx.Script = {}
+Nx.HUD = {}
 
+Nx.Tick = 0
 Nx.Logo = "Interface\\AddOns\\Carbonite\\Gfx\\Carbonite"
 
+--- Options
+-- @within Options
 Nx.Opts = {}
 
+--- Communication
+-- @within Com
 Nx.Com = {}
 Nx.Com.List = {}
 
-Nx.HUD = {}
-
+--- Maps
+-- @within Map
 Nx.Map = {}
 Nx.Map.Dock = {}
 Nx.Map.Guide = {}
 Nx.Map.Guide.PlayerTargets = {}
 Nx.Travel = {}
 
+---
+-- @within MiniMap
+Nx.NXMiniMapBut = {}
+
+---
+-- @within Title
 Nx.Title = {}
+--- 
+-- Auction
+-- @table Nx.AuctionAssist
+-- @within Auction
 Nx.AuctionAssist = {}
+
+--- 
+-- Combat
+-- @table Nx.Combat
+-- @within Combat
 Nx.Combat = {}
 
+--- 
+-- User Events
+-- @table Nx.UEvents
+-- @within UserEvents
 Nx.UEvents = {}
+
+---
+-- @table Nx.UEvents.List
+-- @within UserEvents 
 Nx.UEvents.List = {}
 
-Nx.DebugOn = false
+-- Network
 Nx.NetSendPos = false
 Nx.NetPlyrSendTime = GetTime()
 
@@ -96,12 +127,30 @@ Nx.GroupMembers = {}
 
 Nx.Item = {}
 
-Nx.NXMiniMapBut = {}
-
+--- 
+-- Databases
+-- @table Nx.db
+-- @within Data
 Nx.db = {}
+
+---
+-- @table Nx.dbs
+-- @within Data
 Nx.dbs = {}
 
 Nx.ModuleUpdateIcon = {"test"}
+
+--- 
+-- Flags
+-- @field Nx.RequestTime
+-- @field Nx.FirstTry
+-- @field Nx.Loaded
+-- @field Nx.Initialized
+-- @field Nx.RealTom
+-- @field Nx.ModQAction
+-- @field Nx.ModPAction
+-- @field Nx.DebugOn
+-- @within Flags
 Nx.RequestTime = false
 Nx.FirstTry = true
 Nx.Loaded = false
@@ -110,11 +159,14 @@ Nx.RealTom =  false
 Nx.PlayerFnd = false
 Nx.ModQAction = ""
 Nx.ModPAction = ""
+Nx.DebugOn = false
 
 if _G.TomTom then 
   Nx.RealTom = true
 end
 
+--- TomTom
+-- @within TomTom
 function Nx.EmulateTomTom() 
 	if _G.TomTom and Nx.RealTom then		
 		return
@@ -134,10 +186,13 @@ function Nx.EmulateTomTom()
 		Nx:TTWayCmd(msg)
 	end
 end
-
+---
 
 Nx.EmulateTomTom()
-
+--- 
+-- Defaults
+-- @table defaults
+-- @within Data
 local defaults = {
     char = {
 		Map = {
@@ -438,21 +493,32 @@ local defaults = {
    },
 }
 
+--- 
+-- Broker Menu Template
+-- @within Broker
 Nx.BrokerMenuTemplate = {
-	{ text = "Carbonite", icon = icon, isTitle = true },	
-	{ text = L["Options"], func = function() Nx.Opts:Open() end },
-	{ text = L["Toggle Map"], func = function() Nx.Map:ToggleSize(0) end },
-	{ text = L["Toggle Combat Graph"], func = function() Nx.Combat:Open() end },	
-	{ text = L["Toggle Events"], func = function() Nx.UEvents.List:Open() end },	
+
+	{ text = "Carbonite", icon = icon, isTitle = true }, -- Title	
+	{ text = L["Options"], func = function() Nx.Opts:Open() end }, -- Options
+	{ text = L["Toggle Map"], func = function() Nx.Map:ToggleSize(0) end }, -- Toggle Map
+	{ text = L["Toggle Combat Graph"], func = function() Nx.Combat:Open() end },	-- Toggle Combat Graph
+	{ text = L["Toggle Events"], func = function() Nx.UEvents.List:Open() end },	-- Toggle Events
 }
 
+
+--- Carbonite Menu Frame
+-- @within UI
 local menuFrame = CreateFrame("Frame", "CarboniteMenuFrame", UIParent, "UIDropDownMenuTemplate")
 
+--- Broker Library
+-- @within Broker
 Nx.Broker = LibStub("LibDataBroker-1.1"):NewDataObject("Broker_Carbonite", {
 						type = "data source",
 						icon = "Interface\\AddOns\\Carbonite\\Gfx\\MMBut",
 						label = "Carbonite",
 						text = "Carbonite",
+						---
+						-- @within Broker
 						OnTooltipShow = function(tooltip)
 											if not tooltip or not tooltip.AddLine then return end
 											tooltip:AddLine("Carbonite")
@@ -463,6 +529,8 @@ Nx.Broker = LibStub("LibDataBroker-1.1"):NewDataObject("Broker_Carbonite", {
 											tooltip:AddLine(L["Middle-Click to Toggle Guide"])
 											tooltip:AddLine(L["Right-Click for Menu"])
 										end,
+						---
+						--	@within Broker				
 						OnClick = function(frame, msg)
 									if msg == "LeftButton" then
 										if (IsShiftKeyDown()) then
@@ -478,6 +546,8 @@ Nx.Broker = LibStub("LibDataBroker-1.1"):NewDataObject("Broker_Carbonite", {
 									end
 								end,
 						})
+--- On Initialize
+-- @within Events
 function Nx:OnInitialize()
 	local ver = GetBuildInfo()
 	local v1, v2, v3 = Nx.Split (".", ver)
@@ -518,15 +588,21 @@ function Nx:OnProfileChanged(event, database, newProfileKey)
 	Nx.Opts.NXCmdReload()
 end
 
+--- 
+-- @within Events
 function Nx:OnEnable()
 end
 
+---
+-- @within Events
 function Nx:OnDisable()
 end
+
 ---------------------------------------------------------------------
 
---------
--- Slash command parsing
+
+--- Slash command parsing
+-- @within SlashCommands
 
 function Nx.slashCommand (txt)
 
@@ -680,8 +756,8 @@ function Nx.slashCommand (txt)
 	end
 end
 
---------------------------------------------------------------------------------
--- Startup
+--- Startup
+-- @within Carbonite
 
 function Nx:NXOnLoad (frm)
 
@@ -698,8 +774,8 @@ function Nx:NXOnLoad (frm)
 	Nx.CalendarDate = 0		-- For safety if Map update happens early
 end
 
---------
---
+--- SetupEverything
+-- @within Carbonite
 function Nx:SetupEverything()	
 	if not Nx.FirstTry then
 		return
@@ -773,9 +849,8 @@ function Nx:LocaleInit()
 	Nx.Locale = loc
 end
 
---------
--- Register events
-
+--- Initialize Events
+-- @within Events
 function Nx:InitEvents()
 
 	local Com = Nx.Com
@@ -831,10 +906,10 @@ function Nx:InitEvents()
 
 end
 
---------
+--- Register Event
 -- Register for event and set event handler
 -- (event name, handler to call)
-
+-- @within Events
 function Nx:RegisterEvent (event, handler)
 
 	self.Frm:RegisterEvent (event)
@@ -846,8 +921,9 @@ function Nx:RegisterEvent (event, handler)
 	self.Events[event] = handler
 end
 
--- Handle frame events
 
+--- Frame Events
+-- @within Events
 function Nx:NXOnEvent (event, ...)
 	local h = self.Events[event]
 	if h then
@@ -857,9 +933,8 @@ function Nx:NXOnEvent (event, ...)
 	end
 end
 
---------
--- Login message
-
+--- Player Login
+-- @within PlayerEvents
 function Nx:OnPlayer_login (event, ...)	
 	Nx:OnParty_members_changed()	
 	Nx:RecordCharacterLogin()	
@@ -873,8 +948,8 @@ function Nx:OnPlayer_login (event, ...)
 	Nx.RequestTime = true;
 end
 
---------
-
+--- Mouse Over Unit Frame
+-- @within PlayerEvents
 function Nx:OnUpdate_mouseover_unit (event, ...)
 	if Nx.Quest then
 		Nx.Quest:TooltipProcess (true)
@@ -902,6 +977,9 @@ function Nx:OnUpdate_mouseover_unit (event, ...)
 	end
 end
 
+
+--- Debug Unit Data
+-- @within Debug
 function Nx:UnitDGet (target)
 
 	if Nx.db.profile.Debug.DebugUnit then
@@ -927,8 +1005,8 @@ function Nx:UnitDGet (target)
 	end
 end
 
--- Capture pos of target
-
+--- Unit Data Capture retrieves information about a unit
+-- @within Data
 function Nx:UnitDCapture()
 
 	local data, guid, id, typ = self:UnitDGet ("target")
@@ -952,6 +1030,8 @@ function Nx:UnitDCapture()
 	end
 end
 
+--- Unit Data Tooltip Determines the Faction of the Unit that is moused over and adds info about it to the unit's tooltip.
+-- @within Data
 function Nx:UnitDTip()
 
 	local data, guid, id, typ = self:UnitDGet ("mouseover")
@@ -1029,14 +1109,20 @@ function Nx:UnitDTip()
 	end
 end
 
+--- Player Regen Disabled
+-- @within PlayerEvents
 function Nx:OnPlayer_regen_disabled()
 	Nx.Window:UpdateCombat()
 end
 
+--- Player Regen Enabled
+-- @within PlayerEvents
 function Nx:OnPlayer_regen_enabled()
 	Nx.Window:UpdateCombat()
 end
 
+--- Player Gathering
+-- @within PlayerEvents
 function Nx:OnUnit_spellcast_sent (event, arg1, arg2, arg3, arg4)
 
 	if arg1 == "player" then
@@ -1088,6 +1174,8 @@ function Nx:OnUnit_spellcast_sent (event, arg1, arg2, arg3, arg4)
 	end
 end
 
+--- Player Changed Zones
+-- @within PlayerEvents
 function Nx:OnZone_changed_new_area (event)
 
 	Nx.UEvents:AddInfo (L["Entered"])
@@ -1095,6 +1183,9 @@ function Nx:OnZone_changed_new_area (event)
 	Nx.Com:OnEvent (event)
 end
 
+
+--- Player Leveled Up
+-- @within PlayerEvents
 function Nx:OnPlayer_level_up (event, arg1)
 
 	Nx.UEvents:AddInfo (format (L["Level"] .. " %d", arg1))
@@ -1102,6 +1193,8 @@ function Nx:OnPlayer_level_up (event, arg1)
 	Nx.Com:OnPlayer_level_up (event, arg1)
 end
 
+--- Player Party Size Changed
+-- @within PlayerEvents
 function Nx.OnParty_members_changed()
 
 	local self = Nx
@@ -1132,6 +1225,8 @@ function Nx.OnParty_members_changed()
 	end
 end
 
+--- Player Battleground Score Updated
+-- @within PlayerEvents
 function Nx:OnUpdate_battlefield_score (event)
 
 	local plName = UnitName ("player")
@@ -1183,9 +1278,8 @@ function Nx:OnUpdate_battlefield_score (event)
 
 end
 
---------
--- Generic update
-
+--- Generic update
+-- @within Events
 function Nx:NXOnUpdate (elapsed)
 
 	local Nx = Nx
@@ -1270,9 +1364,8 @@ function Nx:NXOnUpdate (elapsed)
 	end	
 end
 
---------
--- Loot vendor Test
-
+--- Loot vendor Test
+-- @within Util
 function Nx:LootIt()
 
 	local b = _G["GossipTitleButton1"]
@@ -1282,8 +1375,9 @@ function Nx:LootIt()
 	end
 end
 
---------
+--- Show Message
 -- Show a generic message with optional function callback
+-- @within UI
 
 function Nx:ShowMessage (msg, func1Txt, func1, func2Txt, func2)
 
@@ -1310,7 +1404,7 @@ end
 
 --------
 -- Show a generic edit box with optional function callback
-
+-- @within UI
 function Nx:ShowEditBox (msg, val, userData, funcAccept, funcCancel)
 
 --	Nx.prt ("ShowEditBox")
@@ -1374,21 +1468,21 @@ end
 
 --------
 -- Show a trial message
-
+-- @within UI
 function Nx:ShowMessageTrial()
 end
 
 --------
 -- Find active chat frame edit box. Added for patch 3.35 because there is one for each possible chat window now
 -- Was called ChatFrameEditBox. Now ChatFrame1EditBox to ChatFrame10EditBox
-
+-- @within UI
 function Nx:FindActiveChatFrameEditBox()
 	return ChatEdit_GetActiveWindow()
 end
 
 --------
 -- Get time in seconds * 100. Adds fake hundreths
-
+-- @within UI
 function Nx:Time()
 
 	local tm = time()
@@ -1415,8 +1509,9 @@ end
 -- Gather format {}
 --  Herb [map id] = { [#] = { Id = #, Cnt = times gathered, X, Y } }
 --  Mine ^
-
-function Nx:InitGlobal()    
+--- Initialize Global Data Management
+-- @within Data
+function Nx:InitGlobal()
 	if Nx.db.profile.Version.OptionsVersion < Nx.VERSIONDATA then
 
 		if Nx.db.profile.Version.OptionsVersion > 0 then
@@ -1585,7 +1680,7 @@ end
 
 --------
 -- Get generic named data (global, character, database)
-
+-- @within Data
 function Nx:GetData (name, ch)
 
 	ch = ch or Nx.CurCharacter
@@ -1613,7 +1708,7 @@ end
 
 --------
 -- Copy character data
-
+-- @within Data
 function Nx:CopyCharacterData (srcName, dstName)
 
 	if not srcName then
@@ -1649,7 +1744,7 @@ end
 
 --------
 -- Delete character data
-
+-- @within Data
 function Nx:DeleteCharacterData (srcName)
 
 	self:DeleteCharacter (srcName)
@@ -1661,25 +1756,28 @@ end
 
 --------
 -- Get data
-
+-- @within Data
 function Nx:GetDataToolBar()
 	return Nx.CurCharacter["TBar"]
 end
 
 --------
 -- Get HUD options
-
+-- @within Data
 function Nx:GetHUDOpts()
 	return Nx.db.profile.HUDOpts
 end
 
 --------
 -- Get Captured data
-
+-- @within Data
 function Nx:GetCap()
 	return Nx.db.global.Capture
 end
 
+--------
+-- Find Captured Data
+-- @within Data
 function Nx:CaptureFind (t, key)
 
 	assert (type (t) == "table" and key)
@@ -1692,7 +1790,7 @@ end
 --------
 -- Make packed XY string
 -- (xy 0-100)
-
+-- @within Data
 function Nx:PackXY (x, y)
 
 	x = max (0, min (100, x))
@@ -1701,7 +1799,8 @@ function Nx:PackXY (x, y)
 end
 
 --------
-
+-- Unpack X and Y coordinates from a string
+-- @within Data
 function Nx:UnpackXY (xy)
 
 	local x = tonumber (strsub (xy, 1, 3), 16) / 40.9
@@ -1711,19 +1810,19 @@ end
 
 --------------------------------------------------------------------------------
 -- Character Data Management
-
 -- Event format OLD! Now a packed string!
 --  Type table [Info, Kill, Death, Mine, Herb]
 --   All have: Name, Time, Map, X, Y
 --   T added by GetAllEvents for type ("I" "K" "D" "M" "H")
 --   Kill: Level
-
 -- Quest format
 --  table index [quest id]
 --  string "STime"
 --   S (status char): C completed, c not completed, W watched
 --   Time is number from time()
 
+---
+-- @within Data
 function Nx:InitCharacter()
 
 --	NxData.Characters = {}
@@ -1765,15 +1864,15 @@ end
 
 
 --------
--- 
-
+-- Get Player Realm and Name
+-- @within Data
 function Nx:GetRealmCharName()
 	return GetRealmName() .. "." .. UnitName ("player")
 end
 
 --------
--- 
-
+-- Determine the Player's other characters on the Realm.
+-- @within Data 
 function Nx:CalcRealmChars()
 
 	local chars = Nx.db.global.Characters
@@ -1821,7 +1920,7 @@ end
 
 --------
 -- Find character data for a named character on current realm or all realms if "realm.name"
-
+-- @within Data
 function Nx:FindCharacter (name)
 
 	for cnum, rc in ipairs (Nx.RealmChars) do
@@ -1841,7 +1940,7 @@ end
 
 --------
 -- Delete character data for a named character on current realm or all realms if "realm.name"
-
+-- @within Data
 function Nx:DeleteCharacter (name)
 
 	for cnum, rc in ipairs (Nx.RealmChars) do
@@ -1861,7 +1960,7 @@ function Nx:DeleteCharacter (name)
 end
 
 --------
-
+-- @within Data
 function Nx:GetUnitClass()
 	local _, cls = UnitClass ("player")
 	cls = gsub (Nx.Util_CapStr (cls), L["Deathknight"], L["Death Knight"])
@@ -1870,7 +1969,7 @@ end
 
 --------
 -- Record logged in state
-
+-- @within Data
 function Nx:RecordCharacterLogin()
 
 --	Nx.prt ("Log in %d", GetMoney())
@@ -1897,6 +1996,9 @@ function Nx:RecordCharacterLogin()
 	Nx:RecordCharacter()
 end
 
+---
+--
+-- @within Data
 function Nx:RecordCharacter()
 
 --	Nx.prt ("RecordCharacter")
@@ -1936,6 +2038,8 @@ function Nx:RecordCharacter()
 	ch["Justice"] = justice
 end
 
+---
+-- @within Data
 function Nx:DeleteOldEvents()
 
 	for rc, ch in pairs (Nx.db.global.Characters) do
@@ -1947,6 +2051,8 @@ function Nx:DeleteOldEvents()
 	end
 end
 
+---
+-- @within Data
 function Nx:DeleteOldEvent (ev, maxE)
 	if #ev > maxE then
 
@@ -1957,10 +2063,14 @@ function Nx:DeleteOldEvent (ev, maxE)
 end
 
 --------
--- Add event
--- (event) 1 letter name: I,K,D,H,M
--- (data) is optional string
-
+-- @param event Event Type, one character: I,K,D,H,M -> Info, Kill, Death, Herb, Mine
+-- @param name	Character's Name?
+-- @param time	Time of the event
+-- @param mapId Map where the event took place
+-- @param x			X coordinate in the map
+-- @param y			Y coordinate in the map
+-- @param data is optional string
+-- @within Data
 function Nx:AddEvent (event, name, time, mapId, x, y, data)
 
 	local ev = Nx.CurCharacter.E
@@ -1989,14 +2099,16 @@ function Nx:AddEvent (event, name, time, mapId, x, y, data)
 	tinsert (ev, s)
 end
 
---------
 
---function Nx:GetEventType (evStr)
---	return strsub (evStr, 1, 1)
---end
-
---------
-
+--[[
+function Nx:GetEventType (evStr)
+	return strsub (evStr, 1, 1)
+end
+--]]
+---
+-- Get the id of the Map where an Event occurred.
+-- @param evStr Event string where ^ is the delimiter, the third part contains the Map ID
+-- @within Data
 function Nx:GetEventMapId (evStr)
 
 	local _, _, map = Nx.Split ("^", evStr)
@@ -2005,7 +2117,8 @@ function Nx:GetEventMapId (evStr)
 end
 
 --------
-
+-- @param evStr The event string uses ^ as a delimiter; Contains the event type (1 character), time, mapID, xy coords, name and some data
+-- @within Data
 function Nx:UnpackEvent (evStr)
 
 	local typ, tm, map, xy, text, data = Nx.Split ("^", evStr)
@@ -2019,15 +2132,34 @@ function Nx:UnpackEvent (evStr)
 end
 
 --------
-
+-- @param name Player name?
+-- @param time Time the even occurred
+-- @param mapId Id of the map in which the event happened
+-- @param x The x coordinate for the event location in the map
+-- @param y The y coordinate for the event location in the map
+-- @within Data
 function Nx:AddInfoEvent (name, time, mapId, x, y)
 	self:AddEvent ("I", name, time, mapId, x, y)
 end
 
+--------
+-- @param name Player name?
+-- @param time Time the even occurred
+-- @param mapId Id of the map in which the event happened
+-- @param x The x coordinate for the event location in the map
+-- @param y The y coordinate for the event location in the map
+-- @within Data
 function Nx:AddDeathEvent (name, time, mapId, x, y)
 	self:AddEvent ("D", name, time, mapId, x, y)
 end
 
+--------
+-- @param name Player name?
+-- @param time Time the even occurred
+-- @param mapId Id of the map in which the event happened
+-- @param x The x coordinate for the event location in the map
+-- @param y The y coordinate for the event location in the map
+-- @within Data
 function Nx:AddKillEvent (name, time, mapId, x, y)
 
 	local ev = self.CurCharacter.E
@@ -2046,17 +2178,33 @@ function Nx:AddKillEvent (name, time, mapId, x, y)
 	self:AddEvent ("K", name, time, mapId, x, y, format ("%d", kills))
 end
 
+--------
+-- AddHerbEvent  
+-- @param name Player name?
+-- @param time Time the even occurred
+-- @param mapId Id of the map in which the event happened
+-- @param x The x coordinate for the event location in the map
+-- @param y The y coordinate for the event location in the map
+-- @within Data
 function Nx:AddHerbEvent (name, time, mapId, x, y)
 	self:AddEvent ("H", name, time, mapId, x, y)
 end
 
+--------
+-- AddMineEvent
+-- @param name Player name?
+-- @param time Time the even occurred
+-- @param mapId Id of the map in which the event happened
+-- @param x The x coordinate for the event location in the map
+-- @param y The y coordinate for the event location in the map
+-- @within Data
 function Nx:AddMineEvent (name, time, mapId, x, y)
 	self:AddEvent ("M", name, time, mapId, x, y)
 end
 
---------
+-----
 -- Get status for a quest
-
+-- @within Quests
 function Nx:GetQuest (qId)
 
 	local quest = Nx.CurCharacter.Q[qId]
@@ -2071,6 +2219,9 @@ function Nx:GetQuest (qId)
 	return status, time
 end
 
+-----
+-- Set status for a quest
+-- @within Quests
 function Nx:SetQuest (qId, qStatus, qTime)
 
 	qTime = qTime or 0
@@ -2082,8 +2233,8 @@ end
 
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
--- Title
-
+-- Title - Carbonite Logo
+-- @within Title
 function Nx.Title:Init()
 
 	local f = CreateFrame ("Frame", nil, UIParent)
@@ -2148,6 +2299,8 @@ function Nx.Title:Init()
 --	f:Show()
 end
 
+---
+-- @within Title
 function Nx.Title:TickWait (proc)
 
 	Nx.Map:StartupZoom()
@@ -2155,6 +2308,8 @@ function Nx.Title:TickWait (proc)
 	return 30
 end
 
+---
+-- @within Title
 function Nx.Title:TickWait2 (proc)
 	self.X = 0
 	self.Y = GetScreenHeight() * .4
@@ -2174,6 +2329,8 @@ function Nx.Title:TickWait2 (proc)
 	Nx.Proc:SetFunc (proc, self.Tick)
 end
 
+---
+-- @within Title
 function Nx.Title:Tick()
 
 	local this = self.Frm
@@ -2220,9 +2377,10 @@ end
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- Auction
-
 --PAIDS!
 
+---
+-- @within Auction
 function Nx.AuctionAssist.OnAuction_house_show()
 
 --	Nx.prt ("OnAUCTION_HOUSE_SHOW")
@@ -2233,6 +2391,8 @@ function Nx.AuctionAssist.OnAuction_house_show()
 	end
 end
 
+---
+-- @within Auction
 function Nx.AuctionAssist.OnAuction_house_closed()
 
 --	Nx.prt ("OnAUCTION_HOUSE_CLOSED")
@@ -2244,6 +2404,8 @@ function Nx.AuctionAssist.OnAuction_house_closed()
 	end
 end
 
+---
+-- @within Auction
 function Nx.AuctionAssist.OnAuction_item_list_update()
 --	Nx.prt ("OnAUCTION_ITEM_LIST_UPDATE")
 	Nx.AuctionAssist:Update()
@@ -2251,13 +2413,13 @@ end
 
 --------
 -- Create favorites window
-
+-- @within Auction
 function Nx.AuctionAssist:Create()
 end
 
 --------
 -- On list events
-
+-- @within Auction
 function Nx.AuctionAssist:OnListEvent (eventName, sel, val2, click)
 
 --	Nx.prt ("Guide list event "..eventName)
@@ -2270,12 +2432,14 @@ function Nx.AuctionAssist:OnListEvent (eventName, sel, val2, click)
 	AuctionFrameBrowse_Search()
 end
 
+--------
+-- @within Auction
 function Nx.AuctionAssist:Update()
 
 end
 
 --------
-
+-- @within Auction
 function Nx.AuctionAssist.AuctionFrameBrowse_Update()
 
 	if not Nx.AuctionShowBOPer then
@@ -2301,7 +2465,7 @@ function Nx.AuctionAssist.AuctionFrameBrowse_Update()
 --		Nx.prt ("Auction #%d %d %d", n, buyoutPrice, count)
 
 		local index = n + NUM_AUCTION_ITEMS_PER_PAGE * AuctionFrameBrowse["page"]
-
+		local requiredBid = 0
 		if index > numBatchAuctions + NUM_AUCTION_ITEMS_PER_PAGE * AuctionFrameBrowse["page"] then
 			break
 		end
@@ -2369,7 +2533,7 @@ end
 
 --------
 -- Init combat
-
+-- @within Combat
 function Nx.Combat:Init()
 
 	self.KBs = 0
@@ -2391,7 +2555,7 @@ end
 
 --------
 -- Open and init or toggle combat frame
-
+-- @within Combat
 function Nx.Combat:Open()
 
 --PAIDS!
@@ -2460,14 +2624,16 @@ function Nx.Combat:Open()
 
 end
 
+--------
+-- @within Combat
 function Nx.Combat:OpenGraph()
 	self.GraphHits = Nx.Graph:Create (self.W, 50, self.Frm)
 	local f = self.GraphHits.MainFrm
 	self.Win:Attach (f, 0, 1, 0, 1)
 end
 
---------
-
+---
+-- @within Combat
 function Nx.Combat:OnEvent (event, ...)
 
 	local arg1, arg2, arg3 = select (1, ...)
@@ -2606,17 +2772,21 @@ function Nx.Combat:OnEvent (event, ...)
 	end
 end
 
+---
+-- @within Combat
 function Nx.Combat:OnUpdate (...)
 
 end
 
+---
+-- @within Combat
 function Nx.Combat:OnEnter (motion)
 
 end
 
 --------
 -- Start combat
-
+-- @within Combat
 function Nx.Combat:EnterCombat (value)
 
 	if not self.InCombat then
@@ -2632,7 +2802,7 @@ end
 
 --------
 -- Set a new graph line to value
-
+-- @within Combat
 function Nx.Combat:SetLine (value, colorStr, infoStr)
 
 	self:EnterCombat()
@@ -2657,9 +2827,8 @@ function Nx.Combat:SetLine (value, colorStr, infoStr)
 end
 
 -------------------------------------------------------------------------------
--------------------------------------------------------------------------------
 -- User events recording and list
-
+-- @within UserEvents
 function Nx.UEvents:Init()
 
 --	self.Sorted = {}
@@ -2667,7 +2836,7 @@ end
 
 ------
 -- Add info to list
-
+-- @within UserEvents
 function Nx.UEvents:AddInfo (name)
 
 	local mapId, x, y = self:GetPlyrPos()
@@ -2681,7 +2850,7 @@ end
 
 ------
 -- Add player death to list
-
+--@within UserEvents
 function Nx.UEvents:AddDeath (name)
 
 	local mapId, x, y = self:GetPlyrPos()
@@ -2700,7 +2869,7 @@ end
 
 ------
 -- Add kill to list
-
+-- @within UserEvents
 function Nx.UEvents:AddKill (name)
 
 	local mapId, x, y = self:GetPlyrPos()
@@ -2714,7 +2883,7 @@ end
 
 ------
 -- Add honor info to list
-
+-- @within UserEvents
 function Nx.UEvents:AddHonor (name)
 
 	local mapId = self:AddInfo (name)
@@ -2727,7 +2896,7 @@ end
 
 ------
 -- Add herb to list
-
+-- @within UserEvents
 function Nx.UEvents:AddHerb (name)
 
 	local mapId, x, y = self:GetPlyrPos()
@@ -2744,7 +2913,7 @@ end
 
 ------
 -- Add mine to list
-
+-- @within UserEvents
 function Nx.UEvents:AddMine (name)
 
 	local mapId, x, y = self:GetPlyrPos()
@@ -2759,9 +2928,9 @@ function Nx.UEvents:AddMine (name)
 	end
 end
 
-------
+----- 
 -- Add open to list
-
+-- @within UserEvents
 function Nx.UEvents:AddOpen (typ, name)
 
 	local mapId = self:AddInfo (name)
@@ -2773,9 +2942,9 @@ function Nx.UEvents:AddOpen (typ, name)
 	end
 end
 
---------
+---
 -- Get player map pos
-
+-- @within UserEvents
 function Nx.UEvents:GetPlyrPos()
 
 	local mapId = Nx.Map:GetRealMapId()
@@ -2784,7 +2953,7 @@ function Nx.UEvents:GetPlyrPos()
 end
 
 --------
-
+-- @within UserEvents
 function Nx.UEvents:UpdateAll (upGuide)
 
 	self:Sort()
@@ -2792,9 +2961,9 @@ function Nx.UEvents:UpdateAll (upGuide)
 	self.List:Update()
 end
 
---------
+----
 -- Sort compare
-
+-- @within UserEvents
 function Nx.UEvents.SortCmp (v1, v2)
 
 --	prtD ("Sort "..v1.Time.." "..v2.Time)
@@ -2806,7 +2975,7 @@ function Nx.UEvents.SortCmp (v1, v2)
 end
 
 --------
-
+-- @within UserEvents
 function Nx.UEvents:Sort()
 
 --	wipe (self.Sorted)
@@ -2820,7 +2989,7 @@ end
 
 --------
 -- Open and init or toggle user events list
-
+-- @within UserEvents
 function Nx.UEvents.List:Open()
 
 	local UEvents = Nx.UEvents
@@ -2857,7 +3026,8 @@ function Nx.UEvents.List:Open()
 	UEvents:UpdateAll()
 end
 
-------
+--- Update User Events List
+-- @within UserEvents
 function Nx.UEvents.List:Update()
 
 	local Nx = Nx
@@ -2918,9 +3088,9 @@ function Nx.UEvents.List:Update()
 	list:Update (isLast)
 end
 
-------
+---
 -- Update user event data on map
-
+-- @within UserEvents
 function Nx.UEvents:UpdateMap (upGuide)
 
 --	Nx.prt ("UEvents:UpdateMap")
@@ -2964,15 +3134,16 @@ function Nx.UEvents:UpdateMap (upGuide)
 	end
 end
 
--------------------------------------------------------------------------------
-
+---
+-- @table Nx.GatherInfo
+-- @within Gather
 Nx.GatherInfo = {
-	[" "] = {	-- Misc
+	[" "] = {	--- Misc
 		["Art"] = { 0, "Trade_Archaeology", L["Artifact"]},
 		["Everfrost"] = { 0, "spell_shadow_teleport", L["Everfrost"]},
 		["Gas"] = { 0, "inv_gizmo_zapthrottlegascollector",	L["Gas"]},
 	},
-	["H"] = {	-- Herbs
+	["H"] = {	--- Herbs
 		{ 340, "INV_Misc_Herb_AncientLichen", L["Ancient Lichen"]},
 		{ 220, "INV_Misc_Herb_13", L["Arthas' Tears"]},
 		{ 300, "INV_Misc_Herb_17", L["Black Lotus"]},
@@ -3036,7 +3207,7 @@ Nx.GatherInfo = {
 		{ 545, "inv_misc_herb_silkweed",L["Silkweed"]},
 		{ 575, "inv_misc_herb_snowlily",L["Snow Lily"]},		
 	},
-	["M"] = {	-- Mine node
+	["M"] = {	--- Mine node
 		{ 325,	"INV_Ore_Adamantium", L["Adamantite Deposit"]},
 		{ 375,	"INV_Misc_Gem_01", L["Ancient Gem Vein"]},
 		{ 1,	"INV_Ore_Copper_01", L["Copper Vein"]},
@@ -3078,22 +3249,25 @@ Nx.GatherInfo = {
 	}	
 }
 
+---
+-- @table Nx.GatherRemap
+-- @within Gather
 Nx.GatherRemap = {
 	["NXHerb"] = {
-		[47] = 46,		-- Icethorn
+		[47] = 46,		--- Icethorn
 	},
 	["NXMine"] = {
-		[6] = 9,		-- Gold
-		[17] = 20,	-- Silver
-		[23] = 22,	-- Rich Cobalt Deposit
-		[25] = 24,	-- Rich Saronite Deposit
-		[26] = 24,	-- Titanium
+		[6] = 9,		--- Gold
+		[17] = 20,	--- Silver
+		[23] = 22,	--- Rich Cobalt Deposit
+		[25] = 24,	--- Rich Saronite Deposit
+		[26] = 24,	--- Titanium
 	}
 }
 
 --------
 -- Init. Call after map init
-
+-- @within Gather
 function Nx:GatherInit()
 
 	self.GatherLocaleI = 3
@@ -3107,6 +3281,8 @@ function Nx:GatherInit()
 	Nx.GatherVerUpgradeType = nil		-- Kill it
 end
 
+---
+-- @within Gather
 function Nx:GetGather (typ, id)
 
 	local v = Nx.GatherInfo[typ][id]
@@ -3116,6 +3292,8 @@ function Nx:GetGather (typ, id)
 	end
 end
 
+---
+-- @within Gather
 function Nx:HerbNameToId (name)
 
 	local i = self.GatherLocaleI
@@ -3131,6 +3309,8 @@ function Nx:HerbNameToId (name)
 	end
 end
 
+---
+-- @within Gather
 function Nx:MineNameToId (name)
 
 	name = gsub (name, L["Ooze Covered"] .. " ", "")
@@ -3151,15 +3331,17 @@ function Nx:MineNameToId (name)
 	end
 end
 
---------
+---
 -- Upgrade gather data
-
+-- @within Gather
 function Nx:GatherVerUpgrade()
 
 	Nx:GatherVerUpgradeType ("NXHerb")
 	Nx:GatherVerUpgradeType ("NXMine")
 end
 
+---
+-- @within Gather
 function Nx:GatherVerUpgradeType (tName)
 end
 
@@ -3167,6 +3349,9 @@ end
 -- Save location of gathered herb
 -- xy is zone coords
 
+
+---
+-- @within Gather
 function Nx:GatherHerb (id, mapId, x, y)
 	self:Gather ("NXHerb", id, mapId, x, y)
 end
@@ -3174,14 +3359,15 @@ end
 --------
 -- Save location of gathered mining
 -- xy is zone coords
-
+-- @within Gather
 function Nx:GatherMine (id, mapId, x, y)
 	self:Gather ("NXMine", id, mapId, x, y)
 end
 
 --------
 -- Add gathered item. xy zone coords 0-100
-
+-- Upgrade gather data
+-- @within Gather
 function Nx:Gather (nodeType, id, mapId, x, y)
 
 	local remap = self.GatherRemap[nodeType]
@@ -3234,8 +3420,8 @@ function Nx:Gather (nodeType, id, mapId, x, y)
 	nodeT[index] = format ("%f|%f", x, y)
 end
 
---------
-
+---
+-- @within Gather
 function Nx:GatherUnpack (item)
 	local x,y = Nx.Split ("|", item)
 	local x = tonumber (x)
@@ -3243,38 +3429,52 @@ function Nx:GatherUnpack (item)
 	return x, y
 end
 
---------
 
+---
+-- @function Nx:GatherDeleteHerb
+-- @within Gather
 function Nx:GatherDeleteHerb()
 	Nx.db.profile.GatherData.NXHerb = {}
 end
 
+---
+-- @within Gather
 function Nx:GatherDeleteMine()
 	Nx.db.profile.GatherData.NXMine = {}
 end
 
+---
+-- @within Gather
 function Nx:GatherDeleteMisc()
 	Nx.db.profile.GatherData["Misc"] = {}
 end
 
---------
-
+---
+-- @within Gather
 function Nx:GatherImportCarbHerb()
 	Nx:GatherImportCarb ("NXHerb")
 end
 
+---
+-- @within Gather
 function Nx:GatherImportCarbMine()
 	Nx:GatherImportCarb ("NXMine")
 end
 
+---
+-- @within Gather
 function Nx:GatherImportCarbMisc()
 	Nx:GatherImportCarb ("Misc")
 end
 
+---
+-- @within Gather
 function Nx:GatherConvert (id)
 	return floor(id/1000000)/10000, floor(id % 1000000 / 100)/10000, id % 100
 end
 
+---
+-- @within Gather
 function Nx:GatherNodeToCarb (id)
 	
 	local gatherIDs = {
@@ -3400,6 +3600,8 @@ function Nx:GatherNodeToCarb (id)
 	return gatherIDs[id]
 end
 
+---
+-- @within Gather
 function Nx:GatherImportCarb (nodeType)
 	LoadAddOn("GatherMate2_Data_Carbonite")
 	if nodeType == "NXMine" then
@@ -3444,12 +3646,16 @@ end
 -------------------------------------------------------------------------------
 -- Item handling
 
+---
+-- @within Item
 function Nx.Item:Init()
 
 	self.Needed = {}
 	self.Asked = {}
 end
 
+---
+-- @within Item
 function Nx.Item:Load (id)
 
 	if self.Asked[id] then	-- Ask once
@@ -3474,6 +3680,8 @@ function Nx.Item:Load (id)
 	end
 end
 
+---
+-- @within Item
 function Nx.Item.EnableLoadFromServer()
 
 --	Nx.prt ("EnableLoadFromServer")
@@ -3488,6 +3696,8 @@ function Nx.Item.EnableLoadFromServer()
 	Item = Nx:ScheduleTimer (self.Timer, 1)
 end
 
+---
+-- @within Item
 function Nx.Item.DisableLoadFromServer()
 
 --	Nx.prt ("DisableLoadFromServer")
@@ -3499,6 +3709,8 @@ function Nx.Item.DisableLoadFromServer()
 	AskDeleteVV = Nx:ScheduleTimer (self.AskDeleteVV, 0)
 end
 
+---
+-- @within Item
 function Nx.Item.AskDeleteVV()
 
 	local function func()
@@ -3509,6 +3721,8 @@ function Nx.Item.AskDeleteVV()
 	Nx:ShowMessage (Nx.TXTBLUE.."Carbonite:\n|cffffff60" .. L["Delete visited vendor data?"] .. "\n" .. L["This will stop the attempted retrieval of items on login."], L["Delete"], func, L["Cancel"])
 end
 
+---
+-- @within Item
 function Nx.Item:ShowTooltip (id, compare)
 
 --	Nx.prtVar ("ShowTooltip", id)
@@ -3531,6 +3745,8 @@ function Nx.Item:ShowTooltip (id, compare)
 	end
 end
 
+---
+-- @within Item
 function Nx.Item:Timer()
 
 	local id = next (self.Needed)
@@ -3572,6 +3788,8 @@ function Nx.Item:Timer()
 	return 2
 end
 
+---
+-- @within Item
 function Nx.Item:DrawTimer()
 
 	if next (self.Needed) then		-- More?
@@ -3586,9 +3804,8 @@ function Nx.Item:DrawTimer()
 	g:Update()
 end
 
--------------------------------------------------------------------------------
--- Minimap button functions
-
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:Init()
 	local f = NXMiniMapBut
 
@@ -3639,27 +3856,39 @@ function Nx.NXMiniMapBut:Init()
 	end
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:Menu_OnOptions()
 	Nx.Opts:Open()
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:Menu_OnShowMap()
 	Nx.Map:ToggleSize()
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:Menu_OnShowCombat()
 	Nx.Combat:Open()
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:Menu_OnShowEvents()
 	Nx.UEvents.List:Open()
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:Menu_OnHideWatch (item)
 	local hide = item:GetChecked()
 	Nx.Quest.Watch.Win:Show (not hide)
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:Menu_OnShowAuction (item)
 	Nx.AuctionShowBOPer = item:GetChecked()
 
@@ -3668,14 +3897,20 @@ function Nx.NXMiniMapBut:Menu_OnShowAuction (item)
 	end
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:Menu_OnShowCom()
 	Nx.Com.List:Open()
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:Menu_OnProfiling()
 	Nx:ShowMessage ("Toggle profiling? Reloads UI", "Reload", self.ToggleProfiling, "Cancel")
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:ToggleProfiling()
 
 	RegisterCVar ("scriptProfile")
@@ -3689,6 +3924,8 @@ function Nx.NXMiniMapBut:ToggleProfiling()
 	ReloadUI()
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:NXOnEnter (frm)
 	
 	local mmown = Nx.db.profile.MiniMap.ButOwn
@@ -3713,6 +3950,8 @@ function Nx.NXMiniMapBut:NXOnEnter (frm)
 	tip:AppendText ("")
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:NXOnClick (button, down)
 
 --	Nx.prt (button)
@@ -3740,6 +3979,8 @@ function Nx.NXMiniMapBut:NXOnClick (button, down)
 	end
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:OpenMenu()
 	if self.Menu then			-- Someone had error with this nil
 		self.Menu:Open()
@@ -3748,7 +3989,7 @@ end
 
 --------
 -- Move the minimap button around the minimap
-
+-- @within MiniMap
 function Nx.NXMiniMapBut:NXOnUpdate (frm)
 
 --	Nx.prtVar ("NXOnUpdate", frm)
@@ -3766,6 +4007,8 @@ function Nx.NXMiniMapBut:NXOnUpdate (frm)
 	end
 end
 
+---
+-- @within MiniMap
 function Nx.NXMiniMapBut:Move (x, y)
 
 	local but = NXMiniMapBut		-- 32x32
@@ -3795,12 +4038,16 @@ function Nx.NXMiniMapBut:Move (x, y)
 	but:SetUserPlaced (true)
 end
 
+---
+-- @within MiniMap
 function Nx.ModChatReceive(msg,dist,target)
 end
 
 local TempTable = {}
 setmetatable(TempTable, {__mode = "v"})
 
+---
+-- @within Util
 function Nx.Split(d, p)
   if p and not string.find(p,d) then		
 	return p
@@ -3810,7 +4057,8 @@ function Nx.Split(d, p)
 	return unpack(TempTable[p],1,table.maxn(TempTable[p]))
   else
 	local TempNum = 0
-	local Tossaway = {}	
+	local Tossaway = {}
+	local l = ""	
     while true do
       l=string.find(p,d,TempNum,true) 
       if l~=nil then 
@@ -3826,12 +4074,16 @@ function Nx.Split(d, p)
    end
 end
 
+---
+-- @within Procs
 function Nx.Proc:Init()
 
 	self.Procs = {}
 	self.TimeLeft = 0
 end
 
+---
+-- @within Procs
 function Nx.Proc:New (user, func, delay)
 
 	local p = {}
@@ -3841,10 +4093,14 @@ function Nx.Proc:New (user, func, delay)
 	p.Delay = delay or 1
 end
 
+---
+-- @within Procs
 function Nx.Proc:SetFunc (proc, func)
 	proc.Func = func
 end
 
+---
+-- @within Procs
 function Nx.Proc:OnUpdate (elapsed)
 
 --	Nx.prt ("Proc Elapsed raw %s", elapsed)
@@ -3888,13 +4144,3 @@ end
 
 -------------------------------------------------------------------------------
 --EOF
-
-
-
-
-
-
-
-
-
-
