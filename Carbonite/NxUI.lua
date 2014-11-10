@@ -1,4 +1,4 @@
-ï»¿---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 -- Carbonite UI code
 -- Copyright 2007-2012 Carbon Based Creations, LLC
 ---------------------------------------------------------------------------------------
@@ -19,6 +19,10 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ---------------------------------------------------------------------------------------
+
+--- Carbonite UI Module
+-- 
+-- @module NxUI
 
 local NotInitializedWins = {}
 local L = LibStub("AceLocale-3.0"):GetLocale("Carbonite")
@@ -1605,19 +1609,20 @@ function Nx.Window:CreateButtons (closer, maxer, miner)
 		self.ButClose.Frm:Show()
 	end
 
-	x = x - 15		-- Always reserve space
+	x = x - 10		-- Always reserve space
 
 	if self.Sizeable and self.Maxer then
-		self.ButMaxer = Nx.Button:Create (self.Frm, "Max", nil, nil, x, -self.BorderH, "TOPRIGHT", 12, 12, self.OnMaxBut, self)
-		x = x - 15
+		local y = -self.BorderH + 5
+		self.ButMaxer = Nx.Button:Create (self.Frm, "Max", nil, "Minimize", x, -self.BorderH, "TOPRIGHT", 12, 12, self.OnMaxBut, self)
 	end
 
 	if self.Miner then
 
 --		self.ButMiner = Nx.Button:Create (self.Frm, "Max", nil, nil, x, -self.BorderH, "TOPRIGHT", 12, 12, self.OnMaxBut, self)
 		local y = self.Sizeable and -self.BorderH or -3
-		self.ButMiner = Nx.Button:Create (self.Frm, "Min", nil, nil, x, y, "TOPRIGHT", 12, 12, self.OnMinBut, self)
-		x = x - 15
+		y = y + 5
+		x = x + 5
+		self.ButMiner = Nx.Button:Create (self.Frm, "Min", nil, "Maximize", x, y, "TOPRIGHT", 12, 12, self.OnMinBut, self)
 	end
 
 	self.ButW = -x - self.BorderW
@@ -4842,8 +4847,10 @@ function Nx.Menu:Item_SetUpdateSlider (item, x)
 end
 
 -------------------------------------------------------------------------------
--- List
-
+--- Nx List
+-- 
+-- @type Nx.List
+Nx.List = {}
 --[[
 Nx.List.FontSizeConvert = {
 	10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
@@ -4937,8 +4944,10 @@ function Nx.List:GetFrame (list, typ)
 			f = CreateFrame ("ColorSelect", nil, list.Frm)
 
 		elseif typ == "WatchItem" then
-
-			f = CreateFrame ("Button", "NxListFrms" .. self.FrmsUniqueI, list.Frm, "WatchFrameItemButtonTemplate")
+			-- CreateFrame("frameType" [, "name"] [, parent] [, "template"] [, id]
+			f = CreateFrame ("BUTTON", "NxListFrms" .. self.FrmsUniqueI, UIParent, "SecureActionButtonTemplate")
+			--f = NXSecureQuestItemButton
+			--Nx.prt("Frame type: %s", f:GetName() or "");
 
 		elseif typ == "Info" then
 
@@ -5507,7 +5516,8 @@ function Nx.List:Update (showLast)
 
 	local strNum = 1
 	local cNum = 1
-
+	local k
+	local column
 	for k, column in ipairs (self.Columns) do
 
 		for line = self.Top, last do
@@ -5642,7 +5652,6 @@ function Nx.List:Update (showLast)
 --]]
 
 	if self.FrmData then			-- Only used for Info and Watch Items
-
 		Nx.List:FreeFrames (self)
 
 		local lfrm = self.Frm
@@ -5650,80 +5659,26 @@ function Nx.List:Update (showLast)
 		local offY = 3
 		local adjY = hdrH + .5
 		local doBind = true
-
+		local n = 1
+		
 		for n = 1, self.Vis do
 
 			local line = self.Top + n - 1
 			local data = self.FrmData[line]
 
 			if data then
-
-				local typ, v1, v2, v3 = Nx.Split ("~", data)
-
 --				Nx.prt ("%s", -(n - 1) * lineH - adjY - offY)
 
+				local typ, v1, v2, v3, v4, v5 = Nx.Split ("~", data)
 				if typ == "Info" then
-
 					if self.UserFunc then
 						self.UserFunc (self.User, "update", v1, -(n - 1) * lineH - adjY)
 					end
-
 				elseif typ == "WatchItem" then
-
-					local f = Nx.List:GetFrame (self, typ)
-					f:ClearAllPoints()
-
-					local scale = self.ItemFrameScale * .07 * lineH / 13
-
-					f:SetPoint ("TOPRIGHT", lfrm, "TOPLEFT", offX, -(n - 1) * lineH / scale - adjY - offY)
-
-					f["rangeTimer"] = -1
-
-					f:SetScale (scale)
-					f:SetWidth (29)
-					f:SetHeight (30)
-					f:SetAlpha (self.ItemFrameAlpha)
-
-					local id = tonumber (v1)
-
-					f:SetID (id)
-
-					SetItemButtonTexture (f, v2);
-					SetItemButtonCount (f, tonumber (v3));
-					f["charges"] = tonumber (v3);
-
-					local _, dur = GetQuestLogSpecialItemCooldown (id)
-					if dur then
-						WatchFrameItem_UpdateCooldown (f)
-					end
-
-					if doBind then
-						doBind = false						
-						local key = GetBindingKey ("NxWATCHUSEITEM")
-						if key then
-							Nx.qdb.profile.QuestWatch.KeyUseItem = key
-							Nx.prt ("Key %s transfered to Watch List Item", key)
-						end
-
-						if #Nx.qdb.profile.QuestWatch.KeyUseItem > 0 and not InCombatLockdown() then
-
-							local s = GetBindingAction (Nx.qdb.profile.QuestWatch.KeyUseItem)
-							s = strmatch (s, "CLICK (.+):")
---							Nx.prt ("Key's frm %s", s or "nil")
-							if s ~= f:GetName() then
-								local ok = SetBindingClick (Nx.qdb.profile.QuestWatch.KeyUseItem, f:GetName())
-								Nx.prt ("Key %s %s #%s %s", Nx.qdb.profile.QuestWatch.KeyUseItem, f:GetName(), line, ok or "nil")
-								Nx.qdb.profile.QuestWatch.KeyUseItem = ""
-							end
-						end
-					end
-
-					f:Show()
-
+					self:SetQuestItemButtonAttributes(n, tonumber(v1), v2, tonumber(v3), tonumber(v4), v5)
 				end
 			end
 		end
-
 	end
 
 	-- Position selected line
@@ -5742,7 +5697,157 @@ function Nx.List:Update (showLast)
 end
 
 --------
+-- Item Button Functions
+local InCombatLockdown = _G.InCombatLockdown
 
+--- Overridden OnClick for Item Button in Quest Watch List
+-- @function
+function Nx.List:Item_OnClick(button)
+	if ( IsModifiedClick("CHATLINK") and ChatEdit_GetActiveWindow() ) then
+		local link, item, charges, showItemWhenComplete = GetQuestLogSpecialItemInfo(self.questLogIndex);
+		if ( link ) then
+			ChatEdit_InsertLink(link);
+		end
+	else
+		UseQuestLogSpecialItem(self.questLogIndex);
+	end
+end
+function Nx.List:Item_OnEvent(event, ...)
+	if ( event == "PLAYER_TARGET_CHANGED" ) then
+		self.rangeTimer = -1
+	elseif ( event == "BAG_UPDATE_COOLDOWN" ) then
+		Nx.List:Item_UpdateCooldown(self)
+	end
+end
+ 
+function Nx.List:Item_OnUpdate(elapsed)
+	local rangeTimer = self.rangeTimer
+	if ( rangeTimer ) then
+		rangeTimer = rangeTimer - elapsed
+		if ( rangeTimer <= 0 ) then
+			local link, item, charges, showItemWhenComplete = GetQuestLogSpecialItemInfo(self.questLogIndex)
+			if ( not charges or charges ~= self.charges ) then
+				return
+			end
+			local valid = IsQuestLogSpecialItemInRange(self.questLogIndex)
+			if ( valid == 0 ) then
+				self.range:Show()
+				self.range:SetVertexColor(1.0, 0.1, 0.1)
+			elseif ( valid == 1 ) then
+				self.range:Show()
+				self.range:SetVertexColor(0.6, 0.6, 0.6)
+			else
+				self.range:Hide()
+			end
+			rangeTimer = 0.3
+		end
+ 
+		self.rangeTimer = rangeTimer
+	end
+end
+ 
+function Nx.List:Item_OnShow()
+	self:RegisterEvent("PLAYER_TARGET_CHANGED")
+	self:RegisterEvent("BAG_UPDATE_COOLDOWN")
+end
+ 
+function Nx.List:Item_OnHide()
+	self:UnregisterEvent("PLAYER_TARGET_CHANGED")
+	self:UnregisterEvent("BAG_UPDATE_COOLDOWN")
+end
+ 
+function Nx.List:Item_OnEnter()
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+	GameTooltip:SetQuestLogSpecialItem(self.questLogIndex)
+end
+ 
+function Nx.List:Item_OnLeave()
+	GameTooltip:Hide()
+end
+ 
+function Nx.List:Item_UpdateCooldown(itemButton)
+	local start, duration, enable = GetQuestLogSpecialItemCooldown(itemButton.questLogIndex)
+	if ( start ) then
+		CooldownFrame_SetTimer(itemButton.cooldown, start, duration, enable)
+		if ( duration > 0 and enable == 0 ) then
+			SetItemButtonTextureVertexColor(itemButton, 0.4, 0.4, 0.4)
+		else
+			SetItemButtonTextureVertexColor(itemButton, 1, 1, 1)
+		end
+	end
+end
+
+function Nx.List:SetQuestItemButtonAttributes(n, questLogIndex, itemIcon, charges, itemID, link)
+
+	local itemButton = Nx.List:GetFrame (self, "WatchItem")
+	local lineH = self:GetLineH()
+	local scale = self.ItemFrameScale * .07 * lineH / 13
+	--Nx.prt("SetQuestItemButtonAttributes: qli: %d icon: %s charges: %d itemID: %d link: %s", questLogIndex, itemIcon, charges, itemID, link)
+	local lfrm = self.Frm
+	local offX = 3
+	local offY = 3
+	local adjY = self.HdrH + .5
+	local buttonName = itemButton:GetName()
+	itemButton:ClearAllPoints()
+	
+	itemButton:SetPoint ("TOPRIGHT", lfrm, "TOPLEFT", offX, - (n - 1) * lineH / scale - adjY - offY)
+	itemButton:SetScript("OnEvent", Nx.List.Item_OnEvent)
+	itemButton:SetScript("OnUpdate", Nx.List.Item_OnUpdate)
+	itemButton:SetScript("OnShow", Nx.List.Item_OnShow)
+	itemButton:SetScript("OnHide", Nx.List.Item_OnHide)
+	itemButton:SetScript("OnEnter", Nx.List.Item_OnEnter)
+	itemButton:SetScript("OnLeave", Nx.List.Item_OnLeave)
+
+	itemButton:RegisterForClicks("AnyUp")
+	itemButton.icon = itemButton:CreateTexture(buttonName.."Icon", "BORDER")
+	itemButton.icon:SetAllPoints()
+	
+	itemButton.count = itemButton:CreateFontString(buttonName.."Count", "BORDER", "NumberFontNormal")
+	itemButton.count:SetJustifyH("RIGHT")
+	itemButton.count:SetPoint("BOTTOMRIGHT", itemButton.icon, -3, 2)
+
+	itemButton.range = itemButton:CreateFontString(buttonName.."Range", "ARTWORK", "NumberFontNormalSmallGray")
+	itemButton.range:SetSize(29, 10)
+	itemButton.range:SetJustifyH("LEFT")
+	itemButton.range:SetText("¡Ü")
+	itemButton.range:SetPoint("TOPRIGHT", itemButton.icon, 16, -2)
+	 	
+	itemButton:SetScale (scale)
+	itemButton:SetWidth (29)
+	itemButton:SetHeight (30)
+	itemButton:SetAlpha (self.ItemFrameAlpha)
+
+	itemButton.charges = charges
+	itemButton.questLogIndex = questLogIndex
+	itemButton.rangeTimer = -1
+
+	SetItemButtonTexture(itemButton, itemIcon)
+	SetItemButtonCount(itemButton, charges)
+	itemButton:SetAttribute("type*","item")
+	itemButton:SetAttribute("item", link)	
+	
+	if doBind then
+		doBind = false						
+		local key = GetBindingKey ("NxWATCHUSEITEM")
+		if key then
+			Nx.qdb.profile.QuestWatch.KeyUseItem = key
+			Nx.prt ("Key %s transfered to Watch List Item", key)
+		end
+
+		if #Nx.qdb.profile.QuestWatch.KeyUseItem > 0 and not InCombatLockdown() then
+
+			local s = GetBindingAction (Nx.qdb.profile.QuestWatch.KeyUseItem)
+			s = strmatch (s, "CLICK (.+):")
+--							Nx.prt ("Key's frm %s", s or "nil")
+			if s ~= itemButton:GetName() then
+				local ok = SetBindingClick (Nx.qdb.profile.QuestWatch.KeyUseItem, itemButton:GetName())
+				Nx.prt ("Key %s %s #%s %s", Nx.qdb.profile.QuestWatch.KeyUseItem, itemButton:GetName(), line, ok or "nil")
+				Nx.qdb.profile.QuestWatch.KeyUseItem = ""
+			end
+		end
+	end
+end
+--------
 function Nx.List:SaveColumns()
 
 	if self.Save then

@@ -24,12 +24,18 @@
 -------------------------------------------------------------------------------
 -- Quest general
 
+--- Global Environment Table
 local _G = getfenv(0)
 
-CarboniteQuest = LibStub("AceAddon-3.0"):NewAddon("Carbonite.Quest","AceEvent-3.0", "AceComm-3.0")
+--- CarboniteQuest Addon
+local CarboniteQuest = LibStub("AceAddon-3.0"):NewAddon("Carbonite.Quest","AceEvent-3.0", "AceComm-3.0")
+
+--- Carbonite.Quest Addon Localization Table
 local L = LibStub("AceLocale-3.0"):GetLocale("Carbonite.Quest", true)
 
 Nx.VERSIONQOPTS		= .12				-- Quest options
+--- Quest Module for Carbonite
+-- @module Nx.Quest
 Nx.Quest = {}
 Nx.Quest.List = {}
 Nx.Quest.Watch = {}
@@ -144,6 +150,7 @@ local defaults = {
 	},
 }
 
+-- Quest Options
 local questoptions
 local function QuestOptions ()
 	if not questoptions then
@@ -1940,7 +1947,7 @@ function CarboniteQuest:OnInitialize()
 	
 	Nx.Quest:Init()
 	if Nx.qdb.profile.Quest.Enable then
-		Nx.Quest:HideUIPanel (_G["QuestLogFrame"])
+		Nx.Quest:HideUIPanel (_G["QuestMapFrame"])
 	end
 	CarboniteQuest:RegisterComm("carbmodule",Nx.Quest.OnChat_msg_addon)	
 	Nx:AddToConfig("Quest Module",QuestOptions(),"Quest Module")	
@@ -2022,8 +2029,8 @@ function Nx.Quest:Init()
 --	SelectQuestLogEntry = Nx.Quest.SelectQuestLogEntry
 
 	-- Force it to create/enable and then we disable
-	GetUIPanelWidth (QuestLogFrame)
-	QuestLogFrame:SetAttribute ("UIPanelLayout-enabled", false)
+	GetUIPanelWidth (QuestMapFrame)
+	QuestMapFrame:SetAttribute ("UIPanelLayout-enabled", false)
 
 	if QuestLogDetailFrame then	-- Patch 3.2
 		GetUIPanelWidth (QuestLogDetailFrame)
@@ -2057,14 +2064,16 @@ function Nx.Quest:Init()
 	self.QInit = false
 	
 	self:CalcWatchColors()
-
 	self.TagNames = {
-		["Group"] = "+",
-		["Gruppe"] = "+",			-- German
-		["Dungeon"] = "D",
+--		["Group"] = "+",
+--		["Gruppe"] = "+",			-- German
+		["Legendary"] = "L",
+		["Legendär"]	= "L"  -- German
 		["Heroic"] = "H",
 		["Heroisch"] = "H",		-- German
-		["Raid"] = "R",
+		["Account"] = "A",
+		["Konto"] = "A",		-- German
+--		["Raid"] = "R",
 	}
 
 	self.PerColors = {
@@ -2591,7 +2600,7 @@ end
 
 function CarboniteQuest.ShowUIPanel(frame)
 	if frame then
-		if frame == _G["QuestLogFrame"] and Nx.qdb.profile.Quest.Enable then
+		if frame == _G["QuestMapFrame"] and Nx.qdb.profile.Quest.Enable then
 			Nx.Quest:ShowUIPanel (frame)
 		end
 	end
@@ -2599,11 +2608,12 @@ end
 
 function CarboniteQuest.HideUIPanel (frame)
 	if frame then		
-		if frame == _G["QuestLogFrame"] and Nx.qdb.profile.Quest.Enable then
+		if frame == _G["QuestMapFrame"] and Nx.qdb.profile.Quest.Enable then
 			Nx.Quest:HideUIPanel (frame)
 		end
 	end
 end
+
 
 function Nx.Quest:LoadQuestDB()
 	local Map = Nx.Map
@@ -2853,7 +2863,7 @@ end
 
 function Nx.Quest:Menu_OnShowQuest()
 
-	ShowUIPanel (QuestLogFrame)
+	ShowUIPanel (QuestMapFrame)
 
 	self.List.Bar:Select (1)
 
@@ -2980,8 +2990,10 @@ function Nx.Quest:ExpandQuests()
 		local cnt = GetNumQuestLogEntries()
 
 		for qn = 1, cnt do
-
-			local title, level, tag, groupCnt, isHeader, isCollapsed = GetQuestLogTitle (qn)
+			--  Patch 6.0.2 (2014-10-14): Removed returns 'questTag' and 'isDaily'. Added returns 'frequency', 'isOnMap', 'hasLocalPOI', 'isTask', and 'isStory'. source:http://wowpedia.org/API_GetQuestLogTitle
+			local title, level, groupCnt, isHeader, isCollapsed, _, _, questID = GetQuestLogTitle (qn)
+			local tagID, tag = GetQuestTagInfo(questID)
+			
 			if isHeader and isCollapsed then
 
 				local he = self.HeaderExpanded
@@ -3017,7 +3029,7 @@ function Nx.Quest:RestoreExpandQuests()
 		local cnt = GetNumQuestLogEntries()
 		for qn = 1, cnt do
 
-			local title, level, tag, groupCnt, isHeader, isCollapsed = GetQuestLogTitle (qn)
+			local title, level, groupCnt, isHeader, isCollapsed = GetQuestLogTitle (qn)
 			if isHeader and title == hName then
 				CollapseQuestHeader (qn)
 --				Nx.prt ("Collapse #%s %s %s", qn, title, isCollapsed or "nil")
@@ -3114,8 +3126,7 @@ function Nx.Quest:RecordQuestsLog()
 
 			local qi = cur.QI
 			if qi > 0 then
-
-				local title, level, tag, groupCnt, isHeader, isCollapsed, isComplete = GetQuestLogTitle (qi)
+				local title, level, groupCnt, isHeader, isCollapsed, isComplete,_, questID = GetQuestLogTitle (qi)
 				title = self:ExtractTitle (title)
 
 --				Nx.prt ("QD %s %s %s %s", title, qi, isHeader and "H1" or "H0", isComplete and "C1" or "C0")
@@ -3224,9 +3235,10 @@ function Nx.Quest:RecordQuestsLog()
 
 	for qn = 1, qcnt do
 
-		local title, level, tag, groupCnt, isHeader, isCollapsed, isComplete, isDaily = GetQuestLogTitle (qn)
-
---		Nx.prt ("Q %d %s %s %d %s %s %s %s", qn, isHeader and "H" or " ", title, level, tag or "nil", groupCnt or "nil", isDaily or "not daily", isComplete and "C1" or "C0")
+		local title, level, groupCnt, isHeader, isCollapsed, isComplete, frequency, questID = GetQuestLogTitle (qn)
+		local tagID, tag = GetQuestTagInfo(questID)
+		local isDaily = (frequency == LE_QUEST_FREQUENCY_DAILY)
+		--Nx.prt ("Q num: %d id: %d header: %s title: %s level: %s groupCnt: %s daily: %s complete: %s", qn, questID, isHeader and "H" or " ", title, level, groupCnt or "nil", isDaily or "not daily", isComplete and "C1" or "C0")
 
 		if isHeader then
 			header = title or "?"
@@ -3240,8 +3252,8 @@ function Nx.Quest:RecordQuestsLog()
 			SelectQuestLogEntry (qn)
 
 			local qDesc, qObj = GetQuestLogQuestText()
-
-			local qId, qLevel = self:GetLogIdLevel (qn)
+--			Nx.prt ("Q number = %d id = %d, Description = %s", qn, questID, qDesc) 
+			local qId, qLevel = self:GetLogIdLevel (questID)
 			assert (qId)
 			local quest = Nx.Quests[qId]
 
@@ -3280,17 +3292,13 @@ function Nx.Quest:RecordQuestsLog()
 			cur.Level = level
 			cur.RealLevel = qLevel
 			cur.NewTime = self.QIdsNew[qId]	-- Copy new time
-
 			cur.Tag = tag
 			cur.GCnt = groupCnt or 0
 
 			cur.PartySize = groupCnt or 1
 --			if cur.Tag then Nx.prt ("%s %s", cur.Tag, cur.GCnt) end
-			if tag == "Dungeon" or tag == "Heroic" then
+			if tag == "Heroic" then
 				cur.PartySize = 5
-			elseif tag == "Raid" then
-				cur.PartySize = 10
-			end
 
 			cur.TagShort = self.TagNames[tag] or ""
 
@@ -3298,6 +3306,7 @@ function Nx.Quest:RecordQuestsLog()
 			if isDaily then
 				cur.TagShort = "$" .. cur.TagShort
 			end
+			cur.Daily = isDaily
 
 			cur.CanShare = GetQuestLogPushable()
 			cur.Complete = isComplete		-- 1 is Done, nil not. Otherwise failed
@@ -3310,7 +3319,16 @@ function Nx.Quest:RecordQuestsLog()
 			end
 
 			cur.ItemLink, cur.ItemImg, cur.ItemCharges = GetQuestLogSpecialItemInfo (qn)
-
+			Nx.prt("Q num: %d itmLink: %s item: %s charges: %d", qn, cur.ItemLink or " ", cur.ItemImg or " ", cur.ItemCharges)
+			if cur.ItemLink then
+				local itemString = string.match(cur.ItemLink, ".+|Hitem:([^:]+):.+")
+				if itemString then
+					Nx.prt("itemID: %s",itemString)
+					cur.ItemID = tonumber(itemString)
+				else
+					cur.ItemID = 0
+				end
+ 			end
 			cur.Priority = 1
 			cur.Distance = 999999999
 			cur.LBCnt = lbCnt
@@ -3543,7 +3561,7 @@ function Nx.Quest:ScanBlizzQuestDataTimer()
 		return
 	end
 	IS_BACKGROUND_WORLD_CACHING = true
-	WatchFrame:UnregisterEvent ("WORLD_MAP_UPDATE")		-- Map::ScanContinents can enable this again
+	ObjectiveTrackerFrame:UnregisterEvent ("WORLD_MAP_UPDATE")		-- Map::ScanContinents can enable this again
 
 --	local tm = GetTime()
 
@@ -3553,7 +3571,7 @@ function Nx.Quest:ScanBlizzQuestDataTimer()
 	for a,b in pairs(Nx.Map.MapZones[self.ScanBlizzMapId]) do
 		local mapId = b
 		if InCombatLockdown() then			
-			WatchFrame:RegisterEvent ("WORLD_MAP_UPDATE")	-- Back on when done
+			ObjectiveTrackerFrame:RegisterEvent ("WORLD_MAP_UPDATE")	-- Back on when done
 			Nx.Quest.WorldUpdate = false
 			return
 		end
@@ -3565,7 +3583,7 @@ function Nx.Quest:ScanBlizzQuestDataTimer()
 		local info = Map.MapInfo[cont]		
 	end
 	if self.ScanBlizzMapId > Nx.Map.ContCnt then
-		WatchFrame:RegisterEvent ("WORLD_MAP_UPDATE")	-- Back on when done
+		ObjectiveTrackerFrame:RegisterEvent ("WORLD_MAP_UPDATE")	-- Back on when done
 		Map:SetCurrentMap (curMapId)
 		IS_BACKGROUND_WORLD_CACHING = false
 		self:RecordQuestsLog()			
@@ -3629,8 +3647,8 @@ function Nx.Quest:ScanBlizzQuestDataZone()
 		
 		for n = 1, num do			
 			local id, qi = QuestPOIGetQuestIDByVisibleIndex (n)
-			if qi and qi > 0 then				
-				local title, level, tag, groupCnt, isHeader, isCollapsed, isComplete = GetQuestLogTitle (qi)
+			if qi and qi > 0 then
+				local title, level, groupCnt, isHeader, isCollapsed, isComplete, _, questID = GetQuestLogTitle (qi)
 				local lbCnt = GetNumQuestLeaderBoards (qi)				
 				local quest = Nx.Quests[id] or {}				
 				local patch = Nx.Quests[-id] or 0
@@ -3829,10 +3847,10 @@ function Nx.Quest:CalcDesc (quest, objI, cnt, total)
 end
 
 
-function Nx.Quest:GetLogIdLevel (index)
+function Nx.Quest:GetLogIdLevel (questID)
 
-	if index > 0 then
-		local qlink = GetQuestLink (index)
+	if questID > 0 then
+		local qlink = GetQuestLink (GetQuestLogIndexByID(questID))
 		if qlink then
 			local s1, _, id, level = strfind (qlink, "Hquest:(%d+):(.%d*)")
 			if s1 then
@@ -3981,7 +3999,8 @@ function Nx.Quest:FindNewQuest()
 
 	for qn = 1, cnt do
 
-		local title, level, tag, groupCnt, isHeader, isCollapsed, isComplete = GetQuestLogTitle (qn)
+		local title, level, groupCnt, isHeader, isCollapsed, _, _, questID = GetQuestLogTitle (qn)
+		local tagID, tag = GetQuestTagInfo(questID)
 
 		if not isHeader then
 
@@ -4521,7 +4540,6 @@ function Nx.Quest:Goto (qId)
 	cur.LBCnt = 0
 	cur.TrackMask = 1
 	cur.TagShort = ""
-
 	cur.Priority = 1
 	cur.Distance = 999999999
 
@@ -4544,7 +4562,7 @@ function Nx.Quest:Abandon (qIndex, qId)
 
 		self:ExpandQuests()
 
-		local title, level, tag, groupCnt, isHeader = GetQuestLogTitle (qIndex)
+		local title, level, groupCnt, isHeader = GetQuestLogTitle (qIndex)
 
 		if not isHeader then
 
@@ -5055,7 +5073,7 @@ function Nx.Quest.List:Open()
 	win:CreateButtons (true, true)
 	win:InitLayoutData (nil, -.24, -.15, -.52, -.65)
 
-	tinsert (UISpecialFrames, "QuestLogFrame")
+	tinsert (UISpecialFrames, "QuestMapFrame")
 	tinsert (UISpecialFrames, win.Frm:GetName())
 
 	win.Frm:SetToplevel (true)
@@ -5310,7 +5328,7 @@ function Nx.Quest.List:Open()
 --]]
 	-- Quest log
 
---	local qlogf = getglobal ("QuestLogFrame")
+--	local qlogf = getglobal ("QuestMapFrame")
 --	win:Attach (qlogf, .8, 1, 0, 1, true)
 
 	--
@@ -5420,7 +5438,7 @@ function Nx.Quest:ShowUIPanel (frame)
 
 		frame:SetScale (1)
 
-		QuestLogFrame:SetAttribute ("UIPanelLayout-enabled", true)
+		QuestMapFrame:SetAttribute ("UIPanelLayout-enabled", true)
 		ShowUIPanel (frame)
 
 		if detailFrm then
@@ -5469,7 +5487,7 @@ end
 
 function Nx.Quest:HideUIPanel (frame)
 
-	QuestLogFrame:SetAttribute ("UIPanelLayout-enabled", false)
+	QuestMapFrame:SetAttribute ("UIPanelLayout-enabled", false)
 
 	local detailFrm = QuestLogDetailFrame
 	if detailFrm then
@@ -5633,8 +5651,8 @@ end
 function Nx.Quest.List:OnWin (typ)
 
 	if typ == "Close" then
-		HideUIPanel (QuestLogFrame)
---		QuestLogFrame:Hide()
+		HideUIPanel (QuestMapFrame)
+--		QuestMapFrame:Hide()
 	end
 end
 
@@ -6010,7 +6028,7 @@ function Nx.Quest.List:OnListEvent (eventName, sel, val2, click)
 
 	local shift = IsShiftKeyDown() or eventName == "mid"
 
---	Nx.prt (format ("Data #%d, Id%d", qIndex, qId))
+	Nx.prt (format ("Data #%d, Id%d", qIndex, qId))
 
 	if eventName == "select" or eventName == "mid" or eventName == "back" then
 
@@ -6546,7 +6564,6 @@ function Nx.Quest.List:Update()
 						nameStr = "> " .. nameStr
 					end
 
-					list:ItemSet (2, nameStr)
 					list:ItemSet (4, tag)
 
 					if self.QOpts.NXShowObj then
@@ -7606,13 +7623,13 @@ function Nx.Quest:UpdateQuestDetailsTimer()
 
 	local questTimer = GetQuestLogTimeLeft()
 	if questTimer then
---		QuestLogFrame.hasTimer = 1
---		QuestLogFrame.timePassed = 0
+--		QuestMapFrame.hasTimer = 1
+--		QuestMapFrame.timePassed = 0
 		NxQuestDSCTimerText:Show()
 		NxQuestDSCTimerText:SetText (TIME_REMAINING.." "..SecondsToTime (questTimer))
 		NxQuestDSCObjective1:SetPoint ("TOPLEFT", "NxQuestDSCTimerText", "BOTTOMLEFT", 0, -10)
 	else
---		QuestLogFrame.hasTimer = nil
+--		QuestMapFrame.hasTimer = nil
 		NxQuestDSCTimerText:Hide()
 		NxQuestDSCObjective1:SetPoint ("TOPLEFT", "NxQuestDSCObjectivesText", "BOTTOMLEFT", 0, -10)
 	end
@@ -8208,7 +8225,7 @@ end
 
 function Nx.Quest.Watch:Menu_OnShowQuest()
 
-	ShowUIPanel (QuestLogFrame)
+	ShowUIPanel (QuestMapFrame)
 
 	Nx.Quest.List.Bar:Select (1)
 	Nx.Quest.List:Select (self.MenuQId, self.MenuQIndex)
@@ -8515,8 +8532,9 @@ function Nx.Quest.Watch:UpdateList()
 		if not self.Win:IsSizeMin() and self.Win:IsVisible() then
 			self.FlashColor = (self.FlashColor + 1) % 2
 			list:SetItemFrameScaleAlpha (Nx.qdb.profile.QuestWatch.ItemScale, Nx.Util_str2a (Nx.qdb.profile.QuestWatch.ItemAlpha))
+--  		WatchFrame has been removed by Blizzard in 6.0, rolled into ObjectiveTrackerFrame
 			if Nx.qdb.profile.QuestWatch.HideBlizz then
-				WatchFrame:Hide()		-- Hide Blizzard's
+				ObjectiveTrackerFrame:Hide()		-- Hide Blizzard's
 			end
 			if Nx.Quest.AltView then
 				local curnum = 1
@@ -8705,7 +8723,7 @@ function Nx.Quest.Watch:UpdateList()
 						end
 
 						if not isComplete and cur.ItemLink and Nx.qdb.profile.QuestWatch.ItemScale >= 1 then
-							list:ItemSetFrame ("WatchItem~" .. cur.QI .. "~" .. cur.ItemImg .. "~" .. cur.ItemCharges)
+							list:ItemSetFrame ("WatchItem~" .. cur.QI .. "~" .. cur.ItemImg .. "~" .. cur.ItemCharges .. "~" .. cur.ItemID .. "~" .. cur.ItemLink)
 						end
 
 						list:ItemSetButtonTip (cur.ObjText .. (cur.PartyDesc or ""))
@@ -8715,7 +8733,7 @@ function Nx.Quest.Watch:UpdateList()
 						local lvlStr = ""
 						if level > 0 then
 							local col = Quest:GetDifficultyColor (level)
-							lvlStr = format ("|cff%02x%02x%02x%2d%s ", col.r * 255, col.g * 255, col.b * 255, level, cur.TagShort)
+							lvlStr = format ("|cff%02x%02x%02x%2d ", col.r * 255, col.g * 255, col.b * 255, level)
 						end
 
 						local nameStr = format ("%s%s%s", lvlStr, color, cur.Title)
@@ -9063,7 +9081,7 @@ function Nx.Quest.Watch:OnListEvent (eventName, val1, val2, click, but)
 
 				if IsAltKeyDown() then
 					Quest.IgnoreAlt = true
-					ShowUIPanel (QuestLogFrame)
+					ShowUIPanel (QuestMapFrame)
 					Quest.IgnoreAlt = nil
 					Quest.List.Bar:Select (1)
 					Quest.List:Select (qId, qIndex)
@@ -10733,6 +10751,8 @@ function Nx.Quest:UnpackLocPtOff (locStr)
 		return tonumber(x1), tonumber(x2), tonumber(y1), tonumber(y2)		
 	end
 end
+
+return Nx.Quest
 -------------------------------------------------------------------------------
 -- EOF
 
