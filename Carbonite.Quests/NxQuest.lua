@@ -3147,7 +3147,6 @@ function Nx.Quest:RecordQuestsLog()
 			local qi = cur.QI
 			if qi > 0 then
 				local title, level, groupCnt, isHeader, isCollapsed, isComplete,_, questID = GetQuestLogTitle (qi)
-
 				title = self:ExtractTitle (title)
 
 --				Nx.prt ("QD %s %s %s %s", title, qi, isHeader and "H1" or "H0", isComplete and "C1" or "C0")
@@ -3273,7 +3272,7 @@ function Nx.Quest:RecordQuestsLog()
 
 			local qDesc, qObj = GetQuestLogQuestText()
 			local qId, qLevel = self:GetLogIdLevel (questID)
-			if qId then	
+			if qId then
 				local quest = Nx.Quests[qId]
 
 --			local quest = self:Find (title, level, qDesc, qObj)
@@ -5451,6 +5450,7 @@ function Nx.Quest:ShowUIPanel (frame)
 		QuestMapFrame:SetAttribute ("UIPanelLayout-enabled", true)
 		Nx.Quest.OldWindow()
 --		ShowUIPanel (frame)
+
 		if detailFrm then
 			detailFrm:SetScale (1)
 		end
@@ -5511,6 +5511,7 @@ function Nx.Quest:HideUIPanel (frame)
 		if detailFrm then
 			detailFrm:Hide()
 		end
+
 --	self.List:DetailsSetWidth (285)
 
 		self.List.Win:Show (false)
@@ -6580,7 +6581,7 @@ function Nx.Quest.List:Update()
 					if cur.HighPri then
 						nameStr = "> " .. nameStr
 					end
-					
+
 					list:ItemSet (2, nameStr)
 					list:ItemSet (4, tag)
 
@@ -10785,6 +10786,8 @@ function Nx.Quest:UnpackLocPtOff (locStr)
 		return tonumber(x1), tonumber(x2), tonumber(y1), tonumber(y2)		
 	end
 end
+
+return Nx.Quest
 -------------------------------------------------------------------------------
 -- EOF
 
