@@ -5780,6 +5780,8 @@ end
 
 function Nx.List:SetQuestItemButtonAttributes(n, questLogIndex, itemIcon, charges, itemID, link)
 
+	if InCombatLockdown() then return nil end
+
 	local itemButton = Nx.List:GetFrame (self, "WatchItem")
 	local lineH = self:GetLineH()
 	local scale = self.ItemFrameScale * .07 * lineH / 13
@@ -5789,6 +5791,8 @@ function Nx.List:SetQuestItemButtonAttributes(n, questLogIndex, itemIcon, charge
 	local offY = 3
 	local adjY = self.HdrH + .5
 	local buttonName = itemButton:GetName()
+
+
 	itemButton:ClearAllPoints()
 	
 	itemButton:SetPoint ("TOPRIGHT", lfrm, "TOPLEFT", offX, - (n - 1) * lineH / scale - adjY - offY)
@@ -5807,13 +5811,13 @@ function Nx.List:SetQuestItemButtonAttributes(n, questLogIndex, itemIcon, charge
 	itemButton.count:SetJustifyH("RIGHT")
 	itemButton.count:SetPoint("BOTTOMRIGHT", itemButton.icon, -3, 2)
 
-	itemButton.cooldown = CreateFrame("Cooldown", buttonName.."Cooldown", button, "CooldownFrameTemplate")
+	itemButton.cooldown = CreateFrame("Cooldown", buttonName.."Cooldown", itemButton, "CooldownFrameTemplate")
 	itemButton.cooldown:SetAllPoints()
 	
 	itemButton.range = itemButton:CreateFontString(buttonName.."Range", "ARTWORK", "NumberFontNormalSmallGray")
 	itemButton.range:SetSize(29, 10)
 	itemButton.range:SetJustifyH("LEFT")
-	itemButton.range:SetText("Â¡Ãœ")
+	itemButton.range:SetText("¡Ü")
 	itemButton.range:SetPoint("TOPRIGHT", itemButton.icon, 16, -2)
 	 	
 	itemButton:SetScale (scale)

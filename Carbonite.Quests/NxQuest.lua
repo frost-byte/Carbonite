@@ -1,4 +1,4 @@
-﻿---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 -- NxQuest - Quest stuff
 -- Copyright 2007-2012 Carbon Based Creations, LLC
 ---------------------------------------------------------------------------------------
@@ -8517,6 +8517,10 @@ function Nx.Quest.Watch:UpdateList()
 	local oldw, oldh = list:GetSize()
 
 	list:SetBGColor (Nx.Quest.Cols["BGColorR"], Nx.Quest.Cols["BGColorG"], Nx.Quest.Cols["BGColorB"], Nx.Quest.Cols["BGColorA"])
+	if InCombatLockdown() then
+		return
+	end
+		
 	list:Empty()	
 	local watched = wipe (self.Watched)
 
