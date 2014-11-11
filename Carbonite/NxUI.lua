@@ -5807,10 +5807,13 @@ function Nx.List:SetQuestItemButtonAttributes(n, questLogIndex, itemIcon, charge
 	itemButton.count:SetJustifyH("RIGHT")
 	itemButton.count:SetPoint("BOTTOMRIGHT", itemButton.icon, -3, 2)
 
+	itemButton.cooldown = CreateFrame("Cooldown", buttonName.."Cooldown", button, "CooldownFrameTemplate")
+	itemButton.cooldown:SetAllPoints()
+	
 	itemButton.range = itemButton:CreateFontString(buttonName.."Range", "ARTWORK", "NumberFontNormalSmallGray")
 	itemButton.range:SetSize(29, 10)
 	itemButton.range:SetJustifyH("LEFT")
-	itemButton.range:SetText("¡Ü")
+	itemButton.range:SetText("Â¡Ãœ")
 	itemButton.range:SetPoint("TOPRIGHT", itemButton.icon, 16, -2)
 	 	
 	itemButton:SetScale (scale)
