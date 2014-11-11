@@ -8044,6 +8044,7 @@ function Nx.Quest.Watch:Open()
 	local win = Nx.Window:Create ("NxQuestWatch", nil, nil, nil, 1, border)
 	self.Win = win
 
+	
 	win:InitLayoutData (nil, -.80, -.35, -.2, -.1)
 
 	win:CreateButtons (Nx.qdb.profile.QuestWatch.ShowClose, nil, true)
@@ -8051,7 +8052,7 @@ function Nx.Quest.Watch:Open()
 	win:SetUser (self, self.OnWin)
 	win:SetBGAlpha (0, 1)
 	win.Frm:SetClampedToScreen (true)
-
+	RegisterStateDriver(win.Frm, "visibility", "[combat] hide; show");
 	local xo = 0
 	local yo = 0
 
@@ -8474,8 +8475,9 @@ function Nx.Quest.Watch:OnTimer (item)
 		return
 	end
 
-	local watched = self:UpdateList()
-
+	if not InCombatLockdown() then
+		local watched = self:UpdateList()
+	end
 --	Nx.Quest:Route (watched)
 end
 
@@ -8517,10 +8519,7 @@ function Nx.Quest.Watch:UpdateList()
 	local oldw, oldh = list:GetSize()
 
 	list:SetBGColor (Nx.Quest.Cols["BGColorR"], Nx.Quest.Cols["BGColorG"], Nx.Quest.Cols["BGColorB"], Nx.Quest.Cols["BGColorA"])
-	if InCombatLockdown() then
-		return
-	end
-		
+
 	list:Empty()	
 	local watched = wipe (self.Watched)
 

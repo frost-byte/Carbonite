@@ -25,6 +25,8 @@
 local NotInitializedWins = {}
 local L = LibStub("AceLocale-3.0"):GetLocale("Carbonite")
 
+local InCombatLockdown = _G.InCombatLockdown
+
 function Nx:UIInit()
 
 	local qc = {}
@@ -5699,7 +5701,7 @@ end
 
 --------
 -- Item Button Functions
-local InCombatLockdown = _G.InCombatLockdown
+
 
 --- Overridden OnClick for Item Button in Quest Watch List
 -- @function
@@ -5780,8 +5782,6 @@ end
 
 function Nx.List:SetQuestItemButtonAttributes(n, questLogIndex, itemIcon, charges, itemID, link)
 
-	if InCombatLockdown() then return nil end
-
 	local itemButton = Nx.List:GetFrame (self, "WatchItem")
 	local lineH = self:GetLineH()
 	local scale = self.ItemFrameScale * .07 * lineH / 13
@@ -5792,7 +5792,8 @@ function Nx.List:SetQuestItemButtonAttributes(n, questLogIndex, itemIcon, charge
 	local adjY = self.HdrH + .5
 	local buttonName = itemButton:GetName()
 
-
+	-- Hides the ItemButton when Combat is entered and shows it once Combat has ended.
+	-- RegisterStateDriver(itemButton,"visibility","[combat] hide; show")
 	itemButton:ClearAllPoints()
 	
 	itemButton:SetPoint ("TOPRIGHT", lfrm, "TOPLEFT", offX, - (n - 1) * lineH / scale - adjY - offY)
